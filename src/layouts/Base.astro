@@ -7,10 +7,13 @@ import '@fontsource/inter/600.css';
 import '../styles/global.css';
 import { site, whatsappTesto } from '../data/site';
 import { u } from '../lib';
+import { centro, briciole as schemaBriciole, type Briciola } from '../schema';
 
-interface Props { title: string; description: string; image?: string; jsonld?: boolean; }
-const { title, description, image = 'chi-siamo-hero', jsonld = false } = Astro.props;
+interface Props { title: string; description: string; image?: string; schema?: object[]; briciole?: Briciola[]; }
+const { title, description, image = 'chi-siamo-hero', schema = [], briciole = [] } = Astro.props;
+const abs = (h: string) => new URL(u(h), Astro.site).href;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const home = abs('');
 const ogImage = new URL(u(`img/${image}.webp`), Astro.site).href;
 const path = Astro.url.pathname;
 const attivo = (p: string) => (path.startsWith(u(p)) ? 'page' : undefined);
@@ -25,17 +28,10 @@ const menu = [
   { href: 'contatti/', label: 'Contatti' },
 ];
 
-const schema = {
+const voci = briciole.length ? [{ nome: 'Home', href: '' }, ...briciole] : [];
+const grafo = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: site.nome,
-  url: new URL(u(''), Astro.site).href,
-  image: new URL(u('brand/logo.png'), Astro.site).href,
-  telephone: site.telefono,
-  email: site.email,
-  foundingDate: String(site.dal),
-  address: { '@type': 'PostalAddress', streetAddress: 'Via degli ex-alleati km 6.00, località Centore', addressLocality: 'Giugliano in Campania', addressRegion: 'NA', addressCountry: 'IT' },
-  sameAs: [site.instagram],
+  '@graph': [centro(home, abs('brand/logo.png')), ...(voci.length ? [schemaBriciole(abs, voci)] : []), ...schema],
 };
 ---
 <!doctype html>
@@ -51,9 +47,15 @@ const schema = {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content={site.nome} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
   <meta name="theme-color" content="#F9F5F0" />
   <link rel="icon" type="image/png" href={u('brand/zampa.png')} />
-  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  <script type="application/ld+json" set:html={JSON.stringify(grafo)} />
 </head>
 <body>
   <a class="salta" href="#contenuto">Vai al contenuto</a>
@@ -83,6 +85,11 @@ const schema = {
   </header>
 
   <main id="contenuto">
+    {voci.length > 0 && (
+      <nav class="briciole wrap" aria-label="Sei qui">
+        <ol>{voci.map((v, i) => <li>{i < voci.length - 1 ? <a href={u(v.href)}>{v.nome}</a> : <span aria-current="page">{v.nome}</span>}</li>)}</ol>
+      </nav>
+    )}
     <slot />
   </main>
 
@@ -126,6 +133,10 @@ const schema = {
 </html>
 
 <style is:global>
+  .briciole { padding-top: 1.25rem; font-size: var(--t-s); }
+  .briciole ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0; margin: 0; color: var(--marrone); }
+  .briciole li + li::before { content: '/'; margin-right: 0.35rem; color: var(--oro); }
+  .briciole a { color: var(--marrone); }
   .salta { position: absolute; left: -999px; top: 0; background: var(--testo); color: #fff; padding: 0.5rem 1rem; z-index: 50; }
   .salta:focus { left: 1rem; }
   .demo-bar { background: var(--testo); color: var(--crema); font-size: var(--t-xs); text-align: center; padding: 0.45rem var(--gutter-r) 0.45rem var(--gutter); }
@@ -149,10 +160,10 @@ const schema = {
 
   .piede { background: var(--testo); color: #EFE4D8; margin-top: 0; font-size: var(--t-s); }
   .piede a { color: #FFD3A8; }
-  .piede h2 { font-family: var(--f-testo); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.12em; color: #EFE4D8; margin-bottom: 0.75rem; }
+  .piede h2 { font-family: var(--f-titoli); font-size: 1.15rem; font-weight: 600; color: #FFF8F0; margin-bottom: 0.6rem; }
   .piede-griglia { display: grid; gap: 2rem; grid-template-columns: 1.3fr 1fr 1fr 1fr; padding-block: 3.5rem 2rem; }
   .piede-logo { background: var(--crema); border-radius: 12px; padding: 6px; margin-bottom: 1rem; }
-  .piede-basso { border-top: 1px solid rgba(239, 228, 216, 0.2); padding-block: 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+  .piede-basso { border-top: 1px solid rgba(239, 228, 216, 0.2); padding-block: 1.25rem calc(5.5rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
   .piede-basso nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .piede-basso p { margin: 0; opacity: 0.85; }
   @media (max-width: 900px) { .piede-griglia { grid-template-columns: 1fr 1fr; } }

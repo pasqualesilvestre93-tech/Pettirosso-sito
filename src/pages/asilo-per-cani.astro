@@ -3,24 +3,49 @@ import Base from '../layouts/Base.astro';
 import Apertura from '../components/Apertura.astro';
 import Foto from '../components/Foto.astro';
 import InvitoVisita from '../components/InvitoVisita.astro';
+import Faq from '../components/Faq.astro';
+import AltriServizi from '../components/AltriServizi.astro';
 import { u } from '../lib';
+import { servizio, prezzo, faq, type Domanda } from '../schema';
 
 const giornata = [
   { ora: '8:00 – 8:55', titolo: 'Accoglienza', testo: 'Arrivo dei cani e accoglienza.' },
   { ora: '9:00 – 13:00', titolo: 'Vita sociale', testo: 'I cani svolgono vita sociale in gruppi di compatibilità, liberi sotto il vigile controllo di un educatore che incentiva e gestisce le interazioni.' },
   { ora: '13:00 – 13:30', titolo: 'Ritorno a casa', testo: 'Alcuni cani tornano a casa con i proprietari, altri con il TaxiDog, altri ancora vanno in box e attendono il ritiro del pomeriggio, intanto consumano un pasto e riposano. Il ritiro è gestito dagli operatori, per evitare risse tra i cani: il proprietario aspetta nel parcheggio che gli venga consegnato il cane.' },
 ];
+const domande: Domanda[] = [
+  { q: 'Il mio cane è timido con gli altri cani: può venire?', a: "Sì. Accogliamo anche cani con difficoltà di relazione, con un inserimento graduale e l'aiuto di cani competenti, i cosiddetti teacher dog." },
+  { q: "Quanto dura l'inserimento?", a: "In genere due o tre visite preliminari gratuite, di massimo un'ora, con il proprietario presente." },
+  { q: 'In quali giorni e orari si svolge?', a: 'Nei giorni dispari, quando non piove, dal 15 settembre a fine giugno. Accoglienza 8:00–8:55, vita sociale 9:00–13:00, ritorno a casa 13:00–13:30.' },
+  { q: "Quanto costa l'asilo per cani?", a: '€20 al giorno; pacchetto da 8 ingressi €135; pacchetto da 10 ingressi €150, pagati a inizio mese e da usare entro il mese.' },
+  { q: 'Cosa succede se piove?', a: "L'asilo non si svolge; i giorni di pioggia si recuperano se nel mese non restano altri giorni disponibili." },
+];
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const home = new URL(u(''), Astro.site).href;
+const schema = [
+  servizio(home, url, 'Asilo per cani a Giugliano in Campania', 'Asilo per cani (dog daycare)', 'Quattro ore di vita sociale in gruppi di cani compatibili, con la supervisione costante di un educatore e un inserimento graduale con visite gratuite.', [
+    prezzo('Ingresso giornaliero', 20, 'giorno'),
+    prezzo('Pacchetto 8 ingressi', 135, 'mese'),
+    prezzo('Pacchetto 10 ingressi', 150, 'mese'),
+  ]),
+  faq(url, domande),
+];
 ---
-<Base title="Asilo per cani a Giugliano · Il Pettirosso" description="Asilo giornaliero per cani a Giugliano in Campania: gruppi di compatibilità, educatori esperti, inserimento graduale con visite gratuite. Pacchetti da 8 e 10 ingressi." image="gallery-asilo-2025">
+<Base title="Asilo per cani a Giugliano · Il Pettirosso" description="Asilo per cani a Giugliano in Campania: gruppi di cani compatibili, educatori esperti, inserimento con visite gratuite, pacchetti da 8 e 10 ingressi." image="gallery-asilo-2025" schema={schema} briciole={[{ nome: 'Asilo per cani', href: 'asilo-per-cani/' }]}>
   <Apertura etichetta="Asilo giornaliero" titolo="Asilo per cani a Giugliano in Campania" foto="gallery-asilo-2025" alt="Ferdinando al campo con i cani dell'asilo">
     <p class="lead">Nell'asilo giornaliero promuoviamo esperienze ludiche tra cani e tra cani e umani: esplorazione, lotta, inseguimento, perlustrazione, scavo, amicizie, corteggiamenti e persino amori.</p>
+    <ul class="in-breve">
+      <li>Quattro ore al giorno, dalle 9:00 alle 13:00</li>
+      <li>Gruppi di cani compatibili, sempre con un educatore</li>
+      <li>€20 al giorno, oppure 10 ingressi a €150</li>
+      <li>Due o tre visite di inserimento gratuite</li>
+    </ul>
     <div class="pulsanti"><a class="btn primario" href={u('prenota/')}>Prenota la visita conoscitiva gratuita</a><a class="btn secondario" href="#tariffe">Vedi le tariffe</a></div>
   </Apertura>
 
   <section class="sezione fascia">
     <div class="wrap griglia-2">
       <div>
-        <span class="etichetta">Per chi è</span>
         <h2>Cuccioli, adulti e cani che hanno bisogno di sostegno</h2>
         <p class="testo">I gruppi di cani vengono selezionati con cura, così che la socializzazione avvenga in maniera naturale, nel rispetto dei tempi di ogni individuo e sotto la guida vigile di un educatore esperto, in un contesto piacevole ma anche sicuro.</p>
         <p class="testo">Accogliamo cuccioli, cani giovani e adulti, ma anche quelli che hanno difficoltà di relazione con gli umani o con i propri simili: siamo convinti che il rapporto con simili competenti, i cosiddetti <em>teacher dog</em>, possa essere per loro un aiuto importante.</p>
@@ -32,7 +57,6 @@ const giornata = [
 
   <section class="sezione">
     <div class="wrap">
-      <span class="etichetta">La giornata</span>
       <h2>Una mattina all'asilo</h2>
       <ol class="giornata">
         {giornata.map((g) => (
@@ -53,7 +77,6 @@ const giornata = [
   <section class="sezione fascia">
     <div class="wrap griglia-2" style="align-items:start">
       <div>
-        <span class="etichetta">L'inserimento</span>
         <h2>Un passo alla volta</h2>
         <p class="testo">L'obiettivo è dare al cane l'occasione di vivere appaganti esperienze sociali in un ambiente sicuro. Per questo l'inserimento è graduale e tiene conto delle sue difficoltà a interagire con i simili e dei suoi tempi.</p>
         <ul class="elenco">
@@ -70,7 +93,6 @@ const giornata = [
   <section class="sezione" id="tariffe">
     <div class="wrap griglia-2" style="align-items:start">
       <div>
-        <span class="etichetta">Tariffe</span>
         <h2>Tariffe dell'asilo</h2>
         <div class="tabella-wrap">
           <table>
@@ -85,7 +107,6 @@ const giornata = [
         <p class="nota">I pacchetti si pagano in anticipo a inizio mese e vanno utilizzati entro il mese. I giorni di pioggia si recuperano se nel mese non restano altri giorni disponibili.</p>
       </div>
       <div>
-        <span class="etichetta">Quando</span>
         <h2>Calendario</h2>
         <ul class="elenco">
           <li>Solo nei giorni dispari e quando non piove</li>
@@ -105,16 +126,12 @@ const giornata = [
   </section>
 
   <section class="sezione fascia">
-    <div class="wrap faq testo">
-      <span class="etichetta">Domande frequenti</span>
-      <h2>Prima di iscriverti</h2>
-      <details><summary>Il mio cane è timido con gli altri cani: può venire?</summary><p>Sì. Accogliamo anche cani con difficoltà di relazione, con un inserimento graduale e il supporto di cani competenti.</p></details>
-      <details><summary>Quanto dura l'inserimento?</summary><p>In genere due o tre visite preliminari gratuite, di massimo un'ora, con il proprietario presente.</p></details>
-      <details><summary>In quali giorni si svolge?</summary><p>Nei giorni dispari, quando non piove, dal 15 settembre a fine giugno.</p></details>
-      <details><summary>Cosa succede se piove?</summary><p>L'asilo non si svolge; i giorni di pioggia si recuperano se nel mese non restano altri giorni disponibili.</p></details>
+    <div class="wrap testo">
+      <Faq titolo="Domande frequenti" domande={domande} />
     </div>
   </section>
 
+  <AltriServizi attuale="asilo-per-cani/" />
   <InvitoVisita titolo="Prenota la prima visita all'asilo" />
 </Base>
 <style>

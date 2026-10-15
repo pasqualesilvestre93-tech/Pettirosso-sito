@@ -7,6 +7,9 @@ export const site = {
   piva: '04046130615',
   dal: 2006,
   sedeOperativa: 'Via degli ex-alleati km 6.00, località Centore, Giugliano in Campania (NA)',
+  indirizzo: { via: 'Via degli ex-alleati km 6.00, località Centore', cap: '80014', comune: 'Giugliano in Campania', provincia: 'NA' },
+  // Zone citate nelle indicazioni stradali del sito attuale.
+  areaServita: ['Giugliano in Campania', 'Aversa', 'Napoli'],
   sedeLegale: 'Via Vittorio Emanuele 72, 81031 Aversa (CE)',
   telefono: '+39 347 863 1076',
   telefonoLink: 'tel:+393478631076',

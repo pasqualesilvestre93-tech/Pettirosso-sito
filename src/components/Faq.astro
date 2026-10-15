@@ -1,0 +1,9 @@
+---
+import type { Domanda } from '../schema';
+interface Props { domande: Domanda[]; titolo?: string; }
+const { domande, titolo } = Astro.props;
+---
+<div class="faq">
+  {titolo && <h2>{titolo}</h2>}
+  {domande.map((d) => <details><summary>{d.q}</summary><p>{d.a}</p></details>)}
+</div>

@@ -4,27 +4,38 @@ import Foto from '../components/Foto.astro';
 import Video from '../components/Video.astro';
 import Newsletter from '../components/Newsletter.astro';
 import InvitoVisita from '../components/InvitoVisita.astro';
+import Faq from '../components/Faq.astro';
 import { site } from '../data/site';
 import { u } from '../lib';
+import { faq, type Domanda } from '../schema';
 
 const servizi = [
-  { href: 'pensione-per-cani/', titolo: 'Pensione', foto: 'pensione-hero-new', alt: 'Due operatori del centro con un cane nel prato', testo: 'Un residence per cani con 42 box coibentati, quattro uscite giornaliere e personale qualificato presente 24 ore su 24.' },
-  { href: 'asilo-per-cani/', titolo: 'Asilo', foto: 'gallery-asilo-2025', alt: 'Ferdinando al campo con i cani dell’asilo', testo: 'Esperienze sociali ed educative in gruppi formati in base alla compatibilità caratteriale, sempre con la guida di educatori esperti.' },
-  { href: 'educazione-cinofila/', titolo: 'Educazione', foto: 'percorsi-educativi-hero', alt: 'Un uomo sdraiato nel prato accanto al suo cane', testo: 'Percorsi individuali per favorire relazioni serene e durature tra cani e famiglie, basati sul rispetto reciproco e sulla comprensione.' },
-  { href: 'riabilitazione-comportamentale/', titolo: 'Riabilitazione', foto: 'riabilitazione-hero-akita-notte', alt: 'Siria, Akita giapponese, al centro', testo: 'Un percorso che accompagna il cane verso un ritrovato equilibrio emotivo, restituendogli serenità e fiducia.' },
+  { href: 'pensione-per-cani/', vai: 'Scopri la pensione', titolo: 'Pensione', foto: 'pensione-hero-new', alt: 'Due operatori del centro con un cane nel prato', testo: 'Un residence per cani con 42 box coibentati, quattro uscite giornaliere e personale qualificato presente 24 ore su 24.' },
+  { href: 'asilo-per-cani/', vai: "Scopri l'asilo", titolo: 'Asilo', foto: 'gallery-asilo-2025', alt: 'Ferdinando al campo con i cani dell’asilo', testo: 'Esperienze sociali ed educative in gruppi formati in base alla compatibilità caratteriale, sempre con la guida di educatori esperti.' },
+  { href: 'educazione-cinofila/', vai: 'Scopri i percorsi educativi', titolo: 'Educazione', foto: 'percorsi-educativi-hero', alt: 'Un uomo sdraiato nel prato accanto al suo cane', testo: 'Percorsi individuali per favorire relazioni serene e durature tra cani e famiglie, basati sul rispetto reciproco e sulla comprensione.' },
+  { href: 'riabilitazione-comportamentale/', vai: 'Scopri la riabilitazione', titolo: 'Riabilitazione', foto: 'riabilitazione-hero-akita-notte', alt: 'Siria, Akita giapponese, al centro', testo: 'Un percorso che accompagna il cane verso un ritrovato equilibrio emotivo, restituendogli serenità e fiducia.' },
 ];
+
+const domande: Domanda[] = [
+  { q: 'Dove si trova il Centro Cinofilo Il Pettirosso?', a: "In località Centore a Giugliano in Campania (NA), in Via degli ex-alleati km 6.00, alle spalle dell'Acquapark Free Time e a 4 minuti dall'uscita Aversa Sud dell'Asse Mediano." },
+  { q: 'Quali servizi offre?', a: 'Pensione per cani con 42 box, asilo giornaliero, percorsi educativi individuali, riabilitazione comportamentale in collaborazione con il veterinario comportamentalista e attività come fiuto, Mobility Dog e Tellington TTouch.' },
+  { q: 'Prima della pensione o dell’asilo serve una visita?', a: 'Sì: sono previste visite conoscitive gratuite, per valutare con calma l’inserimento del cane.' },
+  { q: 'Quanto costa la pensione?', a: 'Da €25 a €35 a notte (IVA esclusa), secondo taglia e stagione, con un minimo di 2 notti. Il secondo cane dello stesso proprietario ha il 40% di sconto.' },
+  { q: 'Come si prenota?', a: `Su WhatsApp o al telefono, al ${site.telefono}, oppure con il modulo di prenotazione del sito. Le visite sono su appuntamento.` },
+];
+const url = new URL(u(''), Astro.site).href;
 ---
 <Base
-  title="Centro Cinofilo Il Pettirosso · Pensione, asilo ed educazione a Giugliano"
-  description="Centro cinofilo a Giugliano in Campania dal 2006: pensione per cani, asilo, educazione e riabilitazione comportamentale con un approccio rispettoso e relazionale."
-  jsonld
+  title="Centro Cinofilo Il Pettirosso · Pensione e asilo a Giugliano"
+  description="Centro cinofilo a Giugliano in Campania dal 2006: pensione per cani, asilo, educazione e riabilitazione comportamentale, con un approccio rispettoso."
+  schema={[faq(url, domande)]}
 >
   <section class="hero">
     <div class="wrap hero-griglia">
       <div class="hero-testo">
-        <span class="etichetta">Giugliano in Campania · dal {site.dal}</span>
         <h1>Centro cinofilo a Giugliano: pensione, asilo ed educazione dal 2006</h1>
         <p class="lead">Per una relazione consapevole tra uomo e cane.</p>
+        <p class="fiducia">Vent'anni di attività, 42 box con personale presente giorno e notte, {site.google.voto} su Google da {site.google.recensioni} recensioni.</p>
         <div class="pulsanti">
           <a class="btn primario" href={u('prenota/')}>Prenota la visita conoscitiva gratuita</a>
           <a class="btn secondario" href={site.telefonoLink}>Chiama {site.telefono}</a>
@@ -32,18 +43,10 @@ const servizi = [
       </div>
       <Foto nome="chi-siamo-hero" alt="Ferdinando Silvestre con due dei suoi cani" formato="r43" eager />
     </div>
-    <div class="wrap">
-      <ul class="prove" aria-label="In breve">
-        <li><strong>Dal 2006</strong><span>vent'anni di cultura cinofila sul territorio</span></li>
-        <li><strong>42 box</strong><span>e personale presente 24 ore su 24</span></li>
-        <li><strong>{site.google.voto} su Google</strong><span>{site.google.recensioni} recensioni</span></li>
-      </ul>
-    </div>
   </section>
 
   <section class="sezione fascia">
     <div class="wrap">
-      <span class="etichetta">Cosa facciamo</span>
       <h2>Quattro servizi, un solo approccio</h2>
       <div class="griglia-4 servizi">
         {servizi.map((s) => (
@@ -51,7 +54,7 @@ const servizi = [
             <Foto nome={s.foto} alt={s.alt} formato="r43" />
             <h3>{s.titolo}</h3>
             <p>{s.testo}</p>
-            <span class="vai">Scopri {s.titolo.toLowerCase()} →</span>
+            <span class="vai">{s.vai}</span>
           </a>
         ))}
       </div>
@@ -62,22 +65,25 @@ const servizi = [
     <div class="wrap griglia-2">
       <Foto nome="ferdinando-camillo-relazione" alt="Ferdinando abbraccia Camillo" formato="r34" />
       <div>
-        <span class="etichetta">Chi siamo</span>
         <h2>Uno spazio reale dove uomo e cane si incontrano</h2>
         <p class="testo">Dal 2006 promuoviamo una cultura cinofila moderna, offrendo guida e sostegno a chi sceglie di condividere la vita con un cane. Il rispetto e la dignità verso ogni animale sono i principi che guidano ogni nostra attività.</p>
-        <blockquote class="citazione">
-          «Trattare un cane con rispetto, dandogli la dovuta dignità, valorizza ed esalta la nostra stessa natura.»
-          <cite>Ferdinando Silvestre, fondatore</cite>
-        </blockquote>
         <div class="pulsanti"><a class="btn secondario" href={u('chi-siamo/')}>La nostra storia</a></div>
       </div>
+    </div>
+  </section>
+
+  <section class="motto">
+    <div class="wrap">
+      <blockquote>
+        <p>«Trattare un cane con rispetto, dandogli la dovuta dignità, valorizza ed esalta la nostra stessa natura.»</p>
+        <cite>Ferdinando Silvestre, fondatore del Pettirosso</cite>
+      </blockquote>
     </div>
   </section>
 
   <section class="sezione fascia">
     <div class="wrap griglia-2">
       <div>
-        <span class="etichetta">Leggere i cani</span>
         <h2>Ogni settimana, una scena tra cani commentata da Nando</h2>
         <p class="testo">La nuova rubrica video: Ferdinando filma i cani al centro e spiega cosa succede nella relazione tra loro. Il primo episodio è in arrivo.</p>
         <p class="nota">Dall'archivio: un incontro tra cani in pensione.</p>
@@ -90,7 +96,6 @@ const servizi = [
   <section class="sezione">
     <div class="wrap griglia-2">
       <div>
-        <span class="etichetta">Dal blog</span>
         <h2>La lettera del Pettirosso</h2>
         <p class="testo">Ogni mese un articolo che approfondisce i miti più diffusi sui cani, con quello che vediamo ogni giorno al campo. Il primo numero è in arrivo.</p>
         <div class="pulsanti"><a class="btn secondario" href={u('blog/')}>Vai al blog</a></div>
@@ -102,7 +107,6 @@ const servizi = [
   <section class="sezione fascia">
     <div class="wrap griglia-2">
       <div>
-        <span class="etichetta">Come arrivare</span>
         <h2>Siamo in località Centore, a Giugliano</h2>
         <p>{site.sedeOperativa}</p>
         <ul class="elenco">{site.puntiRiferimento.map((p) => <li>{p}</li>)}</ul>
@@ -115,6 +119,12 @@ const servizi = [
     </div>
   </section>
 
+  <section class="sezione">
+    <div class="wrap testo">
+      <Faq titolo="Domande frequenti" domande={domande} />
+    </div>
+  </section>
+
   <InvitoVisita />
 </Base>
 
@@ -124,11 +134,11 @@ const servizi = [
   @media (max-width: 820px) { .hero-griglia { grid-template-columns: minmax(0, 1fr); } }
   .hero-testo { min-width: 0; }
   .hero h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.2rem); }
-  .prove { list-style: none; padding: 0; margin: clamp(2rem, 4vw, 3rem) 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--sabbia); }
-  .prove li { padding: 1.25rem 1rem 0 0; display: grid; gap: 0.2rem; }
-  .prove strong { font-family: var(--f-titoli); font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); color: var(--arancio-scuro); font-weight: 600; }
-  .prove span { font-size: var(--t-s); color: var(--marrone); }
-  @media (max-width: 600px) { .prove { grid-template-columns: minmax(0, 1fr); } .prove li { padding-right: 0; } }
+  .fiducia { font-size: var(--t-s); color: var(--marrone); max-width: 46ch; border-left: 3px solid var(--oro); padding-left: 0.9rem; }
+  .motto { background: var(--arancio-scuro); color: var(--crema); padding-block: clamp(3rem, 7vw, 5.5rem); }
+  .motto blockquote { margin: 0; max-width: 30ch; }
+  .motto p { font-family: var(--f-titoli); font-style: italic; font-weight: 500; font-size: clamp(1.9rem, 1.2rem + 3vw, 3.3rem); line-height: 1.2; margin: 0; text-wrap: balance; }
+  .motto cite { display: block; margin-top: 1.25rem; font-style: normal; font-size: var(--t-s); color: var(--crema); }
   .servizi { margin-top: 2rem; }
   .servizio { display: grid; gap: 0.75rem; align-content: start; text-decoration: none; color: var(--testo); min-width: 0; }
   .servizio h3 { margin: 0.25rem 0 0; color: var(--arancio-scuro); }

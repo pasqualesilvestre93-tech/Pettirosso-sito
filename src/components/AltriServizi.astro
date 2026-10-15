@@ -1,0 +1,30 @@
+---
+import { u } from '../lib';
+interface Props { attuale: string; }
+const { attuale } = Astro.props;
+const voci = [
+  { href: 'pensione-per-cani/', nome: 'Pensione', testo: '42 box, quattro uscite al giorno, personale 24 ore su 24.' },
+  { href: 'asilo-per-cani/', nome: 'Asilo', testo: 'Quattro ore di vita sociale in gruppi di cani compatibili.' },
+  { href: 'educazione-cinofila/', nome: 'Educazione', testo: 'Percorsi individuali in città, in casa e in natura.' },
+  { href: 'riabilitazione-comportamentale/', nome: 'Riabilitazione', testo: 'Insieme al veterinario comportamentalista.' },
+  { href: 'attivita/', nome: 'Attività', testo: 'Fiuto, Mobility Dog, Tellington TTouch.' },
+].filter((v) => v.href !== attuale);
+---
+<nav class="altri wrap" aria-label="Altri servizi">
+  <h2>Gli altri servizi del Pettirosso</h2>
+  <ul>
+    {voci.map((v) => <li><a href={u(v.href)}><strong>{v.nome}</strong><span>{v.testo}</span></a></li>)}
+  </ul>
+</nav>
+<style>
+  .altri { padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .altri h2 { font-size: var(--t-l); color: var(--testo); }
+  .altri ul { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--sabbia); }
+  .altri li { border-bottom: 1px solid var(--sabbia); }
+  .altri a { display: grid; gap: 0.25rem; padding: 1.1rem 1rem 1.1rem 0; text-decoration: none; color: var(--testo); min-height: 44px; }
+  .altri a strong { font-family: var(--f-titoli); font-size: 1.2rem; font-weight: 600; color: var(--arancio-scuro); }
+  .altri a span { font-size: var(--t-s); color: var(--marrone); }
+  .altri a:hover strong { text-decoration: underline; }
+  @media (max-width: 900px) { .altri ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .altri ul { grid-template-columns: minmax(0, 1fr); } }
+</style>

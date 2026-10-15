@@ -2,11 +2,10 @@
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
 ---
-<Base title="Prenota la visita conoscitiva · Il Pettirosso" description="Prenota una visita conoscitiva gratuita al Centro Cinofilo Il Pettirosso: pensione, asilo, educazione o riabilitazione." image="gallery-asilo-2025">
+<Base briciole={[{ nome: 'Prenota', href: 'prenota/' }]} title="Prenota la visita conoscitiva · Il Pettirosso" description="Prenota una visita conoscitiva gratuita al Centro Cinofilo Il Pettirosso: pensione, asilo, educazione o riabilitazione." image="gallery-asilo-2025">
   <section class="sezione">
     <div class="wrap griglia-2" style="align-items:start">
       <div>
-        <span class="etichetta">Prenota</span>
         <h1>Visita conoscitiva gratuita</h1>
         <p class="lead">Raccontaci del tuo cane: ti ricontattiamo per fissare la visita. Pensione e asilo iniziano sempre così, senza costi.</p>
         <p class="nota">Inviando il modulo si apre WhatsApp con il messaggio già scritto: devi solo premere invio. Se preferisci, chiamaci al <a href={site.telefonoLink}>{site.telefono}</a>.</p>

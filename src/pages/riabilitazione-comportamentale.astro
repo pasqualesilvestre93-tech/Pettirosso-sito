@@ -3,9 +3,13 @@ import Base from '../layouts/Base.astro';
 import Apertura from '../components/Apertura.astro';
 import Foto from '../components/Foto.astro';
 import InvitoVisita from '../components/InvitoVisita.astro';
+import AltriServizi from '../components/AltriServizi.astro';
 import { u } from '../lib';
+import { servizio } from '../schema';
+const home = new URL(u(''), Astro.site).href;
+const schema = [servizio(home, new URL(Astro.url.pathname, Astro.site).href, 'Riabilitazione comportamentale del cane', 'Riabilitazione comportamentale', 'Percorsi di riabilitazione comportamentale condivisi con il veterinario esperto in comportamento, per cani con paure, fobie o reattività.')];
 ---
-<Base title="Riabilitazione comportamentale del cane · Il Pettirosso" description="Riabilitazione comportamentale a Giugliano in Campania in collaborazione con il veterinario comportamentalista: i casi di Siria, Camillo e Argo." image="riabilitazione-hero-akita-notte">
+<Base title="Riabilitazione comportamentale del cane · Il Pettirosso" schema={schema} briciole={[{ nome: 'Riabilitazione comportamentale', href: 'riabilitazione-comportamentale/' }]} description="Riabilitazione comportamentale a Giugliano in Campania in collaborazione con il veterinario comportamentalista: i casi di Siria, Camillo e Argo." image="riabilitazione-hero-akita-notte">
   <Apertura etichetta="Riabilitazione" titolo="Riabilitazione comportamentale" foto="riabilitazione-hero-akita-notte" alt="Siria, Akita giapponese, di sera al centro">
     <p class="lead">Un percorso che accompagna il cane e la sua famiglia umana verso un ritrovato equilibrio emotivo, restituendo loro serenità e fiducia.</p>
     <p class="testo">Quando un comportamento problematico si è strutturato in una condizione patologica, il cane non sta scegliendo di essere "cattivo", "disobbediente" o "vendicativo". Al contrario, è un individuo che sta soffrendo.</p>
@@ -15,7 +19,6 @@ import { u } from '../lib';
   <section class="sezione fascia">
     <div class="wrap griglia-2" style="align-items:start">
       <div class="testo">
-        <span class="etichetta">Come lavoriamo</span>
         <h2>Un lavoro di squadra con il veterinario</h2>
         <p>Tutte le volte che si ha a che fare con un cane affetto da disturbo comportamentale è opportuno interpellare un medico veterinario esperto in comportamento.</p>
         <h3>Ma cosa è patologico e cosa non lo è?</h3>
@@ -38,7 +41,6 @@ import { u } from '../lib';
 
   <section class="sezione">
     <div class="wrap">
-      <span class="etichetta">Storie dal Pettirosso</span>
       <h2>Tre percorsi</h2>
 
       <article class="caso">
@@ -79,6 +81,7 @@ import { u } from '../lib';
     </div>
   </section>
 
+  <AltriServizi attuale="riabilitazione-comportamentale/" />
   <InvitoVisita titolo="Il tuo cane sta soffrendo? Parliamone" />
 </Base>
 <style>

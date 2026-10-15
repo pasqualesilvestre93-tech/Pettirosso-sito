@@ -32,10 +32,9 @@ const foto = [
 ] as const;
 const passato = ['york-passato-2', 'york-passato-3', 'york-passato-5', 'york-passato-7'];
 ---
-<Base title="Gallery · Centro Cinofilo Il Pettirosso" description="Foto e video dal Centro Cinofilo Il Pettirosso: cani ospiti, famiglie, asilo, seminari e momenti del passato." image="gallery-asilo-2025">
+<Base briciole={[{ nome: 'Gallery', href: 'gallery/' }]} title="Gallery · Centro Cinofilo Il Pettirosso" description="Foto e video dal Centro Cinofilo Il Pettirosso: cani ospiti, famiglie, asilo, seminari e momenti del passato." image="gallery-asilo-2025">
   <section class="sezione stretta">
     <div class="wrap">
-      <span class="etichetta">Gallery</span>
       <h1>Momenti dal Pettirosso</h1>
       <p class="lead">Una raccolta di momenti catturati durante le nostre attività: cani ospiti, famiglie, il verde che ci circonda.</p>
     </div>
@@ -49,7 +48,6 @@ const passato = ['york-passato-2', 'york-passato-3', 'york-passato-5', 'york-pas
 
   <section class="sezione fascia">
     <div class="wrap">
-      <span class="etichetta">Esperienze</span>
       <h2>Con il Gruppo Cinofilo dei Carabinieri</h2>
       <div class="griglia-2" style="align-items:start">
         <Video nome="carabinieri-cinofili-1" verticale />
@@ -60,7 +58,6 @@ const passato = ['york-passato-2', 'york-passato-3', 'york-passato-5', 'york-pas
 
   <section class="sezione">
     <div class="wrap">
-      <span class="etichetta">Seminari</span>
       <h2>Formazione al campo</h2>
       <div class="griglia-2" style="align-items:start">
         <Video nome="seminario-luigi-di-leo" didascalia="Seminario con Luigi di Leo." />
@@ -77,7 +74,6 @@ const passato = ['york-passato-2', 'york-passato-3', 'york-passato-5', 'york-pas
 
   <section class="sezione fascia">
     <div class="wrap">
-      <span class="etichetta">Momenti del passato</span>
       <h2>L'unica differenza… era la coda.</h2>
       <div class="griglia-4">
         {passato.map((n) => <Foto nome={n} alt="Ferdinando da giovane con il suo cane" formato="r34" />)}

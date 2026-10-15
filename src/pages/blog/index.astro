@@ -2,10 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
 ---
-<Base title="La lettera del Pettirosso · Blog" description="Il blog del Centro Cinofilo Il Pettirosso: ogni mese i miti più diffusi sui cani, spiegati con quello che vediamo al campo." image="gallery-pacchia-relax">
+<Base briciole={[{ nome: 'Blog', href: 'blog/' }]} title="La lettera del Pettirosso · Blog" description="Il blog del Centro Cinofilo Il Pettirosso: ogni mese i miti più diffusi sui cani, spiegati con quello che vediamo al campo." image="gallery-pacchia-relax">
   <section class="sezione">
     <div class="wrap">
-      <span class="etichetta">Blog</span>
       <h1>La lettera del Pettirosso</h1>
       <p class="lead">Ogni mese un articolo firmato da Nando che approfondisce i miti più diffusi sui cani, con quello che vediamo ogni giorno al campo. La stessa lettera arriva per email agli iscritti.</p>
       <div class="scheda vuoto">

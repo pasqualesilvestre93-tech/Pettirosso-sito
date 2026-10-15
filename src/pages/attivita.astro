@@ -4,14 +4,20 @@ import Apertura from '../components/Apertura.astro';
 import Foto from '../components/Foto.astro';
 import Video from '../components/Video.astro';
 import InvitoVisita from '../components/InvitoVisita.astro';
+import AltriServizi from '../components/AltriServizi.astro';
+import { u } from '../lib';
+import { servizio } from '../schema';
+const home = new URL(u(''), Astro.site).href;
+const schema = [servizio(home, new URL(Astro.url.pathname, Astro.site).href, 'Attività per cani: fiuto, Mobility Dog, Tellington TTouch', 'Attività cinofile', 'Esperienze sociali, olfattive e cognitive, Mobility Dog e Tellington TTouch per il benessere psicofisico del cane.')];
 ---
-<Base title="Attività per cani: fiuto, Mobility Dog, TTouch · Il Pettirosso" description="Esperienze sociali, olfattive, cognitive, Mobility Dog e Tellington TTouch al Centro Cinofilo Il Pettirosso di Giugliano." image="mobility-dog-1">
+<Base title="Fiuto, Mobility Dog e TTouch a Giugliano · Il Pettirosso" schema={schema} briciole={[{ nome: 'Attività', href: 'attivita/' }]} description="Esperienze sociali, olfattive, cognitive, Mobility Dog e Tellington TTouch al Centro Cinofilo Il Pettirosso di Giugliano." image="mobility-dog-1">
   <Apertura etichetta="Attività" titolo="Esperienze attraverso attività ludiche" foto="gallery-cosa-facciamo--mobility" alt="Un cane su un attrezzo di mobility con un educatore">
     <p class="lead">Esperienze sociali, olfattive, cognitive e di mobility dog per stimolare corpo e mente del cane, rafforzare il legame con la famiglia e migliorare la vita quotidiana insieme.</p>
     <p class="testo">Incontriamo i cani e le loro famiglie e li affianchiamo in percorsi individuali utili alla loro crescita e al rapporto con la famiglia umana.</p>
   </Apertura>
 
   <section class="sezione fascia">
+    <div class="wrap"><h2>Tre tipi di esperienze</h2></div>
     <div class="wrap griglia-3">
       <div class="scheda">
         <h3>Esperienze sociali</h3>
@@ -31,7 +37,6 @@ import InvitoVisita from '../components/InvitoVisita.astro';
   <section class="sezione">
     <div class="wrap griglia-2">
       <div>
-        <span class="etichetta">Mobility Dog</span>
         <h2>«Muovere il corpo per muovere la mente»</h2>
         <p class="testo">La Mobility Dog mette al centro il benessere psicofisico del cane. È un'attività non agonistica: cane e proprietario affrontano insieme semplici strutture di palestra, con difficoltà crescenti proposte tenendo conto delle motivazioni e della disponibilità del cane.</p>
         <p class="testo">Ogni esercizio richiede concentrazione, equilibrio e fiducia, e aiuta il cane a diventare più consapevole del proprio corpo. L'umano, intanto, affina la comunicazione non verbale: postura, gesti, orientamento, tono della voce. Il risultato è una relazione più solida e collaborativa.</p>
@@ -49,7 +54,6 @@ import InvitoVisita from '../components/InvitoVisita.astro';
     <div class="wrap griglia-2">
       <Foto nome="gallery-cosa-facciamo--tellingthon-ttouch" alt="Una sessione di Tellington TTouch" formato="r43" />
       <div>
-        <span class="etichetta">Tellington TTouch</span>
         <h2>Un lavoro dolce su corpo e mente</h2>
         <p class="testo">Il Tellington TTouch è un metodo di lavoro fisico e mentale per gli animali ideato da Linda Tellington-Jones. Si basa su movimenti circolari delicati, carezze e leggere manipolazioni del corpo, con esercizi di groundwork su attrezzi specifici. L'obiettivo è migliorare consapevolezza corporea ed equilibrio, ridurre lo stress e rafforzare la relazione tra uomo e animale.</p>
       </div>
@@ -62,6 +66,7 @@ import InvitoVisita from '../components/InvitoVisita.astro';
     </div>
   </section>
 
+  <AltriServizi attuale="attivita/" />
   <InvitoVisita titolo="Vuoi provare con il tuo cane?" />
 </Base>
 <style>.galleria-mini { margin-top: 2rem; }</style>

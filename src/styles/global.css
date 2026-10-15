@@ -53,7 +53,7 @@ h3 { font-size: var(--t-l); color: var(--testo); }
 p { margin: 0 0 1em; }
 .lead { font-size: 1.1875rem; color: var(--marrone); max-width: 62ch; }
 .testo { max-width: 68ch; }
-.etichetta { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.12em; color: var(--marrone); font-weight: 600; margin-bottom: 0.6rem; display: block; }
+.etichetta { font-size: var(--t-s); color: var(--marrone); font-weight: 600; margin-bottom: 0.5rem; display: block; }
 
 .wrap { max-width: 1120px; margin-inline: auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
 .sezione { padding-block: clamp(3rem, 6vw, 5.5rem); }
@@ -97,7 +97,7 @@ figcaption { font-size: var(--t-s); color: var(--marrone); margin-top: 0.5rem; }
 .tabella-wrap { overflow-x: auto; border-radius: var(--raggio); border: 1px solid var(--sabbia); background: var(--carta); }
 table { border-collapse: collapse; width: 100%; min-width: 480px; font-variant-numeric: tabular-nums; }
 th, td { text-align: left; padding: 0.8rem 1rem; border-bottom: 1px solid var(--sabbia); }
-thead th { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--marrone); background: var(--beige); }
+thead th { font-size: var(--t-s); font-weight: 600; color: var(--marrone); background: var(--beige); }
 tbody tr:last-child td { border-bottom: 0; }
 td.prezzo { font-weight: 600; color: var(--testo); }
 
@@ -129,3 +129,8 @@ td.prezzo { font-weight: 600; color: var(--testo); }
 .modulo .consenso { display: flex; gap: 0.6rem; align-items: flex-start; font-weight: 400; }
 .modulo .consenso input { width: auto; margin-top: 0.3rem; }
 .nota { font-size: var(--t-s); color: var(--marrone); }
+
+/* Elenco "in breve": i fatti chiave di un servizio, con la zampa del logo come punto elenco. */
+.in-breve { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; gap: 0.45rem; font-size: var(--t-s); }
+.in-breve li { position: relative; padding-left: 1.6rem; }
+.in-breve li::before { content: ''; position: absolute; left: 0; top: 0.2em; width: 1.05rem; height: 1.05rem; background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%23E16702'%3E%3Cellipse cx='5.2' cy='10' rx='2.1' ry='2.7'/%3E%3Cellipse cx='9.4' cy='5.6' rx='2.1' ry='2.8'/%3E%3Cellipse cx='14.6' cy='5.6' rx='2.1' ry='2.8'/%3E%3Cellipse cx='18.8' cy='10' rx='2.1' ry='2.7'/%3E%3Cpath d='M12 11.5c-3.4 0-6.4 3.6-6.4 6.6 0 2 1.6 3 3.4 3 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.8 0 3.4-1 3.4-3 0-3-3-6.6-6.4-6.6z'/%3E%3C/g%3E%3C/svg%3E"); }

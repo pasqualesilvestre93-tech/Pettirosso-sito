@@ -4,10 +4,9 @@ import Foto from '../components/Foto.astro';
 import { site } from '../data/site';
 import { u } from '../lib';
 ---
-<Base title="Contatti e orari · Centro Cinofilo Il Pettirosso" description="Orari, indirizzo, telefono e indicazioni per raggiungere il Centro Cinofilo Il Pettirosso a Giugliano in Campania, località Centore." image="struttura-oggi">
+<Base briciole={[{ nome: 'Contatti', href: 'contatti/' }]} title="Contatti e orari · Centro Cinofilo Il Pettirosso" description="Orari, indirizzo, telefono e indicazioni per raggiungere il Centro Cinofilo Il Pettirosso a Giugliano in Campania, località Centore." image="struttura-oggi">
   <section class="sezione stretta">
     <div class="wrap">
-      <span class="etichetta">Contatti</span>
       <h1>Mettiamoci in contatto</h1>
       <p class="lead">Siamo lieti di accogliere qualsiasi domanda o di fissare un appuntamento. Per consulenze e consigli chiamaci al {site.telefono} o scrivici su WhatsApp: ti risponderemo appena possibile.</p>
       <div class="pulsanti">
@@ -43,7 +42,6 @@ import { u } from '../lib';
   <section class="sezione">
     <div class="wrap griglia-2" style="align-items:start">
       <div>
-        <span class="etichetta">Come raggiungerci</span>
         <h2>Punti di riferimento</h2>
         <ul class="elenco">{site.puntiRiferimento.map((p) => <li>{p}</li>)}</ul>
         <h3>Indicazioni stradali</h3>
