@@ -10,7 +10,7 @@ Sito statico (Astro) del Centro Cinofilo Il Pettirosso, Giugliano in Campania.
 
 ```bash
 npm install
-npm run build        # demo: https://pasqualesilvestre93-tech.github.io/pettirosso-sito/
+npm run build        # demo: https://pasqualesilvestre93-tech.github.io/Pettirosso-sito/
 DEMO=false SITE_URL=https://nuovo-dominio.it BASE_PATH=/ npm run build   # sito definitivo
 ```
 

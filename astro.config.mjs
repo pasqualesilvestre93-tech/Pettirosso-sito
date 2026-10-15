@@ -7,7 +7,7 @@ const DEMO = process.env.DEMO !== 'false';
 
 export default defineConfig({
   site: process.env.SITE_URL || 'https://pasqualesilvestre93-tech.github.io',
-  base: process.env.BASE_PATH || '/pettirosso-sito',
+  base: process.env.BASE_PATH || '/Pettirosso-sito',
   trailingSlash: 'always',
   build: { format: 'directory' },
   integrations: DEMO ? [] : [sitemap()],
