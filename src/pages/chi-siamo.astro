@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import Apertura from '../components/Apertura.astro';
+import Foto from '../components/Foto.astro';
+import InvitoVisita from '../components/InvitoVisita.astro';
+import corsi from '../data/curriculum.json';
+---
+<Base title="Chi siamo · Centro Cinofilo Il Pettirosso" description="Dal 2006 il Centro Cinofilo Il Pettirosso diffonde una moderna cultura cinofila a Giugliano in Campania. Ferdinando Silvestre, lo staff e la struttura." image="hero-new">
+  <Apertura etichetta="Chi siamo" titolo="Uno spazio reale dove uomo e cane si incontrano" foto="hero-new" alt="Ferdinando Silvestre con due cani, in bianco e nero">
+    <p class="lead">Il Pettirosso è un luogo, ma ancor prima un'idea: un luogo dove la relazione e il guardarsi dentro sono al centro.</p>
+    <p class="testo">Dal 2006 ci impegniamo a diffondere una moderna cultura cinofila e ad accrescere la consapevolezza e il senso di responsabilità delle persone verso il mondo animale, specialmente verso chi sceglie di condividere parte della propria vita con un cane.</p>
+  </Apertura>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2">
+      <div class="testo">
+        <span class="etichetta">Cosa ci distingue</span>
+        <h2>Accoglienza</h2>
+        <p>Ci dedichiamo gratuitamente a chi decide di adottare un cane da un canile: lo affianchiamo con guida, ascolto e sostegno, per una scelta consapevole del cane che meglio si potrà inserire nella sua famiglia.</p>
+        <p>Accogliamo chi, per qualsiasi motivo, attraversa un momento di difficoltà con il proprio compagno a quattro zampe, ma vuole farsene carico con maturità e ristabilire un legame sereno.</p>
+        <blockquote class="citazione">
+          «La nostra più grande soddisfazione è la serenità dei cani che ci vengono affidati, la loro fiducia conquistata poco a poco e la gioia con cui salutano la propria famiglia quando si ritrovano.»
+          <cite>Ferdinando Silvestre</cite>
+        </blockquote>
+      </div>
+      <Foto nome="gallery-rapporto-amore" alt="Una donna con il suo cane al campo del centro" formato="r43" />
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap griglia-2" style="align-items:start">
+      <Foto nome="ferdinando-silvestre-1" alt="Ritratto di Ferdinando Silvestre" formato="r34" />
+      <div class="testo">
+        <span class="etichetta">Il fondatore</span>
+        <h2>Ferdinando Silvestre</h2>
+        <p><strong>Fondatore, direttore tecnico e responsabile del Pettirosso.</strong></p>
+        <p>L'esperienza con il mondo cinofilo è stata all'inizio amatoriale. Con la fondazione del Pettirosso, nel 2006, ho intrapreso una formazione professionale che continua ancora oggi con corsi, seminari, stage e studio personale.</p>
+        <p>Nel mio percorso ho incontrato studiosi, etologi, comportamentalisti e istruttori cinofili. Tra i più influenti: Linda Tellington-Jones e lo staff del Tellington TTouch, Angela Stockdale, Michele Minunno, Barbara Gallicchio e il mio mentore Francesco De Giorgio, che insieme a José mi hanno aiutato a scoprire un modo personale di lavorare con i cani.</p>
+        <p>Oggi amo occuparmi dell'educazione dei cuccioli, della socializzazione tra cani e tra cani e umani e di percorsi di riabilitazione comportamentale in collaborazione con veterinari comportamentalisti. Propongo attività di fiuto, sono tecnico di Mobility Dog e seguo il benessere dei cani nelle strutture di accoglienza e nella mia pensione.</p>
+        <details class="blocco-dettagli">
+          <summary>Il percorso di formazione: {corsi.length} corsi e seminari</summary>
+          <ul>{corsi.map((c: string) => <li>{c}</li>)}</ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap">
+      <span class="etichetta">Lo staff</span>
+      <h2>Le persone del Pettirosso</h2>
+      <p class="testo">La formazione dello staff è finalizzata alla comprensione della comunicazione canina, con un approccio etologico e un orientamento cognitivo-relazionale, che privilegia la conoscenza come mezzo di comprensione e la relazione come forma di cooperazione.</p>
+      <div class="griglia-3 staff">
+        <div class="scheda"><h3>Maria Rosaria Silvestre</h3><p class="ruolo">Socia e collaboratrice</p><p>Figura storica del centro, sempre pronta a intervenire. Ha maturato competenze nell'accoglienza dei clienti e nella gestione dei cani in pensione. Ha seguito il lungo percorso riabilitativo di Camillo, oggi il suo cane.</p></div>
+        <div class="scheda"><h3>Federico Maria Vigliotta</h3><p class="ruolo">Educatore cinofilo</p><p>Gestisce in autonomia l'asilo per cani. Si distingue nella lettura delle dinamiche sociali e della comunicazione canina e per l'attenzione ai cani in difficoltà. Collabora con Ferdinando in alcuni percorsi riabilitativi.</p></div>
+        <div class="scheda"><h3>Fabrizio Preziuso</h3><p class="ruolo">Assistente educatore</p><p>Collabora con il Pettirosso dalla fine del 2024. Supporta Federico all'asilo e si occupa dell'accoglienza dei clienti e dei loro cani, in entrata e in uscita.</p></div>
+      </div>
+      <div class="griglia-2 foto-staff">
+        <Foto nome="gallery-ferdinando-federico-fabrizio" alt="Ferdinando, Federico e Fabrizio sulla panchina del centro" formato="r43" didascalia="Ferdinando, Federico e Fabrizio." />
+        <Foto nome="collaboratori-storici" alt="Lo staff del centro" formato="r43" didascalia="Lo staff del centro." />
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap griglia-2">
+      <div class="testo">
+        <span class="etichetta">La struttura</span>
+        <h2>Un'ampia area verde in territorio agricolo</h2>
+        <p>Le alberature di tigli, platani, roverelle e falso pepe disegnano zone d'ombra e spazi in cui si percepisce contatto con la natura, calma e serenità. All'ingresso c'è un ampio parcheggio alberato dove si viene accolti.</p>
+        <p>Quattro ampie aree recintate, i campi A-B-C-D, sempre curate, offrono ai cani spazio per il gioco, l'esplorazione, le interazioni sociali e per correre in libertà e in sicurezza. All'ingresso c'è una tendostruttura di 12 × 6 metri per le attività didattiche, con ufficio, bagno per gli ospiti e una veranda per l'accoglienza.</p>
+      </div>
+      <div class="griglia-2 coppia">
+        <Foto nome="struttura-oggi" alt="Il giardino del centro oggi, con la tendostruttura" formato="r34" didascalia="Oggi" />
+        <Foto nome="gallery-struttura-20-anni-fa" alt="Il campo del centro vent'anni fa" formato="r34" didascalia="Vent'anni fa" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap testo">
+      <span class="etichetta">Grazie</span>
+      <h2>I collaboratori storici</h2>
+      <p><strong>Gennaro Canfora</strong>: per oltre dieci anni ha dato un contributo fondamentale alla crescita e alla cura del centro. Il suo ricordo resta vivo in ogni angolo del Pettirosso.</p>
+      <p><strong>Anna Canfora</strong>: ha contribuito con dedizione e passione alla storia del centro, sia all'asilo sia in pensione.</p>
+      <p><strong>Alice e Pasquale Silvestre</strong>: i figli di Ferdinando, al suo fianco nei momenti iniziali, i più difficili, e nei periodi più impegnativi come l'estate.</p>
+      <p>E poi Stefania Papof, che per prima ci ha affiancati con l'asilo e il taxi dog, Carolina, Francesco, Giuseppina, Valeria, Loredana e tanti altri: con ognuno abbiamo percorso un tratto di strada e restiamo riconoscenti.</p>
+    </div>
+  </section>
+
+  <InvitoVisita titolo="Vieni a conoscerci" />
+</Base>
+<style>
+  .staff { margin-block: 2rem; }
+  .staff .ruolo { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--marrone); font-weight: 600; margin-bottom: 0.75rem; }
+  .staff .scheda p:last-child { margin: 0; font-size: var(--t-s); }
+  .coppia { gap: 0.75rem; }
+  @media (max-width: 720px) { .coppia { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import Apertura from '../components/Apertura.astro';
+import Foto from '../components/Foto.astro';
+import Video from '../components/Video.astro';
+import InvitoVisita from '../components/InvitoVisita.astro';
+import { u } from '../lib';
+---
+<Base title="Educazione cinofila a Giugliano · Il Pettirosso" description="Percorsi educativi individuali per cani e famiglie a Giugliano in Campania: un approccio olistico e relazionale, in città, in casa e in natura." image="percorsi-educativi-hero">
+  <Apertura etichetta="Percorsi educativi" titolo="Educazione cinofila: percorsi individuali" foto="percorsi-educativi-hero" alt="Un uomo sdraiato nel prato accanto al suo cane">
+    <p class="lead">Leggerete tante belle parole, che chiunque potrebbe scrivere. Al Pettirosso proveremo a far seguire i fatti.</p>
+    <p class="testo">Percorsi individuali per favorire relazioni serene e durature tra cani e famiglie, basati sul rispetto reciproco e sulla comprensione. Nessun condizionamento, solo esperienze autentiche e collaborazione.</p>
+    <div class="pulsanti"><a class="btn primario" href={u('prenota/')}>Chiedi un primo incontro</a></div>
+  </Apertura>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2">
+      <Foto nome="ferdinando-camillo-relazione" alt="Ferdinando e Camillo" formato="r34" didascalia="La relazione tra uomo e cane si costruisce attraverso la condivisione quotidiana, la presenza e il rispetto reciproco." />
+      <div>
+        <span class="etichetta">La nostra filosofia</span>
+        <h2>Ogni cane è un individuo unico</h2>
+        <p class="testo">La nostra filosofia si fonda sull'idea che ogni cane sia capace di instaurare con l'uomo un legame autentico e consapevole. Il nostro obiettivo è favorire relazioni serene e durature tra cani e famiglie, nel rispetto reciproco e nella comprensione delle diversità di specie.</p>
+        <p class="testo">Il nostro orientamento è olistico: consideriamo il cane nella sua totalità, corpo, mente ed emozioni. Ogni relazione deve crescere con i suoi tempi, nel rispetto delle individualità.</p>
+        <p class="testo">Educare significa far emergere il valore dell'individuo, della sua personalità, riconoscendosi nell'intesa sociale con l'uomo in un'ottica cooperativa e di equilibrio emotivo. Per questo siamo contro qualunque forma di addestramento e condizionamento. <span class="dc">da confermare: tono</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap griglia-2" style="align-items:start">
+      <div>
+        <span class="etichetta">Come lavoriamo</span>
+        <h2>E allora come operiamo?</h2>
+        <p class="testo">Con professionalità ed esperienza seguiamo i cani e i loro proprietari in ambienti urbani, domestici o naturali, affiancandoli nelle esperienze che permetteranno loro di trovare un equilibrio personale nei vari contesti.</p>
+        <p class="testo">Il nostro lavoro serve a evitare che il cane diventi un problema per la famiglia con cui vive, e a far scoprire alla famiglia quanto sia una risorsa preziosa, parte integrante e armoniosa del nucleo familiare.</p>
+      </div>
+      <div class="scheda">
+        <h3>In ogni progetto educativo ci proponiamo di</h3>
+        <ul class="elenco">
+          <li>Approfondire prima di ogni altra cosa la conoscenza del singolo cane, valorizzandone personalità ed espressioni emotive e agevolando lo sviluppo dei processi cognitivi.</li>
+          <li>Riconoscere e rispettare le motivazioni di specie e i bisogni etologici, base imprescindibile per il benessere dell'animale.</li>
+          <li>Curare le dinamiche e gli equilibri dei gruppi misti, umani, cani e altri animali domestici, per una convivenza armonica e duratura.</li>
+        </ul>
+        <h3>Gli obiettivi</h3>
+        <ul class="elenco">
+          <li>Facilitare la relazione uomo-cane</li>
+          <li>Migliorare la socializzazione tra cani e tra cani e persone</li>
+          <li>Affiancare i proprietari e i loro cani nella conoscenza dell'ambiente urbano</li>
+          <li>Offrire esperienze ludiche, esplorative e olfattive per cuccioli e adulti</li>
+        </ul>
+        <p class="nota">Prezzi dei percorsi: su richiesta. <span class="dc">da confermare</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap">
+      <span class="etichetta">Dal campo</span>
+      <h2>Percorsi in città</h2>
+      <div class="griglia-2" style="align-items:start">
+        <Video nome="educazione-rex-guinzaglio" didascalia="Condotta al guinzaglio in un percorso educativo." verticale />
+        <Video nome="amstaff-guinzaglio-centro-commerciale" didascalia="Nota: i cani non devono essere portati nei centri commerciali. Questa situazione è stata successivamente corretta durante il percorso educativo." verticale />
+      </div>
+    </div>
+  </section>
+
+  <InvitoVisita titolo="Parliamo del tuo cane" />
+</Base>

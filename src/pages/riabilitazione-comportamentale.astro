@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Apertura from '../components/Apertura.astro';
+import Foto from '../components/Foto.astro';
+import InvitoVisita from '../components/InvitoVisita.astro';
+import { u } from '../lib';
+---
+<Base title="Riabilitazione comportamentale del cane · Il Pettirosso" description="Riabilitazione comportamentale a Giugliano in Campania in collaborazione con il veterinario comportamentalista: i casi di Siria, Camillo e Argo." image="riabilitazione-hero-akita-notte">
+  <Apertura etichetta="Riabilitazione" titolo="Riabilitazione comportamentale" foto="riabilitazione-hero-akita-notte" alt="Siria, Akita giapponese, di sera al centro">
+    <p class="lead">Un percorso che accompagna il cane e la sua famiglia umana verso un ritrovato equilibrio emotivo, restituendo loro serenità e fiducia.</p>
+    <p class="testo">Quando un comportamento problematico si è strutturato in una condizione patologica, il cane non sta scegliendo di essere "cattivo", "disobbediente" o "vendicativo". Al contrario, è un individuo che sta soffrendo.</p>
+    <div class="pulsanti"><a class="btn primario" href={u('prenota/')}>Chiedi un primo incontro</a></div>
+  </Apertura>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2" style="align-items:start">
+      <div class="testo">
+        <span class="etichetta">Come lavoriamo</span>
+        <h2>Un lavoro di squadra con il veterinario</h2>
+        <p>Tutte le volte che si ha a che fare con un cane affetto da disturbo comportamentale è opportuno interpellare un medico veterinario esperto in comportamento.</p>
+        <h3>Ma cosa è patologico e cosa non lo è?</h3>
+        <p>Più che di patologia bisognerebbe parlare di "sofferenza emotiva": una sofferenza più intensa, che si manifesta e persiste anche quando non avrebbe motivo di esserci nella vita di un cane.</p>
+        <h3>Come si opera in questi casi?</h3>
+        <p>Secondo un progetto terapeutico condiviso tra il veterinario esperto in comportamento e l'istruttore cinofilo esperto in comportamento: le aree medica e riabilitativa si sostengono a vicenda e conducono cane e famiglia verso un nuovo modo di stare insieme.</p>
+      </div>
+      <div class="scheda">
+        <h3>Il proprietario è parte attiva del percorso</h3>
+        <ul class="elenco">
+          <li>È lui che somministra le terapie.</li>
+          <li>È lui che osserva i cambiamenti, i segnali, i miglioramenti o le ricadute.</li>
+          <li>È lui che ha il polso quotidiano della salute dell'animale.</li>
+        </ul>
+        <p>La cura è un lavoro di squadra. Costruire un'alleanza terapeutica significa riconoscere i ruoli, rispettare le competenze e collaborare con fiducia. Perché al centro di tutto c'è lui o lei: l'animale che amiamo.</p>
+        <p class="nota">Prezzi dei percorsi: su richiesta. <span class="dc">da confermare</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap">
+      <span class="etichetta">Storie dal Pettirosso</span>
+      <h2>Tre percorsi</h2>
+
+      <article class="caso">
+        <div class="caso-foto">
+          <Foto nome="siria-arrivo-pettirosso" alt="Siria appena arrivata al Pettirosso" formato="r34" didascalia="Siria appena arrivata" />
+          <Foto nome="siria-oggi" alt="Siria oggi" formato="r34" didascalia="Siria oggi" />
+        </div>
+        <div class="testo">
+          <h3>Siria, Akita giapponese: sindrome da privazione sensoriale</h3>
+          <p>Siria è stata acquistata a cinque mesi da una famiglia impietositasi della sua condizione. Proveniente dall'Est Europa, aveva trascorso l'infanzia nella teca di un negozio di animali. Il risultato: sindrome da privazione sensoriale.</p>
+          <p>Il percorso è durato sei mesi, dall'inizio della conoscenza alla consegna definitiva ai proprietari.</p>
+        </div>
+      </article>
+
+      <article class="caso">
+        <div class="caso-foto">
+          <Foto nome="camillo-1-cucciolo-30" alt="Camillo da cucciolo, all'inizio del percorso" formato="r43" didascalia="L'inizio del percorso" />
+          <Foto nome="camillo-finale" alt="Camillo in negozio, inserito nella vita sociale" formato="r43" didascalia="Oggi, nella vita sociale" />
+        </div>
+        <div class="testo">
+          <h3>Camillo: un cucciolo fobico</h3>
+          <p>Proviene da un allevamento di Roma e solo due giorni dopo l'arrivo a casa emerge la sua problematica: è un cucciolo fobico. Decidiamo di tenerlo e di affrontare il calvario: le difficoltà iniziali, il supporto farmacologico, cadute e ricadute.</p>
+          <p>Dopo molti mesi intraprendiamo la strada che, in due anni, lo renderà un cane capace di vivere in un contesto sociale. Gli ingredienti? La tenacia e l'amore di Maria Rosaria Silvestre, affiancata dalla sua Golden "Mivi", che ha dato a Camillo sostegno emotivo, affettivo e insegnamenti.</p>
+          <p>Oggi Camillo ha otto anni ed è un cane ben inserito nella vita sociale.</p>
+        </div>
+      </article>
+
+      <article class="caso">
+        <div class="caso-foto uno">
+          <Foto nome="argo-pastore-tedesco" alt="Argo, pastore tedesco, durante il percorso" formato="r169" />
+        </div>
+        <div class="testo">
+          <h3>Argo, pastore tedesco: reattività verso gli altri cani</h3>
+          <p>Argo, circa due anni, è il classico cane che nel periodo sensibile non ha avuto l'opportunità di un percorso qualificato di socializzazione con i suoi simili. Ha frequentato un asilo, ma senza una guida competente che si facesse carico delle difficoltà del cucciolo.</p>
+          <p>L'obiettivo del percorso è la socializzazione con gli altri cani: in breve, non essere reattivo verso i cani che incontra per strada. Le nostre aspettative si limitano a questo semplice ma fondamentale obiettivo.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <InvitoVisita titolo="Il tuo cane sta soffrendo? Parliamone" />
+</Base>
+<style>
+  .caso { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; padding-block: 2.5rem; border-top: 1px solid var(--sabbia); }
+  .caso:first-of-type { border-top: 0; padding-top: 1.5rem; }
+  .caso-foto { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  .caso-foto.uno { grid-template-columns: minmax(0, 1fr); }
+  @media (max-width: 760px) { .caso { grid-template-columns: minmax(0, 1fr); } }
+</style>

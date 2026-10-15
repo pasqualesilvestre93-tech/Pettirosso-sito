@@ -1,0 +1,144 @@
+---
+import Base from '../layouts/Base.astro';
+import Apertura from '../components/Apertura.astro';
+import Foto from '../components/Foto.astro';
+import Video from '../components/Video.astro';
+import InvitoVisita from '../components/InvitoVisita.astro';
+import { u } from '../lib';
+
+const tariffe = [
+  { taglia: 'Fino a 6 kg', bassa: '€25', alta: '€30', altissima: '€30' },
+  { taglia: 'Media e grande fino a 30 kg', bassa: '€30', alta: '€30', altissima: '€30' },
+  { taglia: 'Gigante oltre 30 kg', bassa: '€30', alta: '€30', altissima: '€35' },
+];
+const garanzie = [
+  { t: 'Sicurezza 24h/24h', d: 'Sorveglianza continua e personale qualificato.' },
+  { t: 'Benessere animale', d: 'Canile progettato secondo criteri di funzionalità, sicurezza e benessere animale. Attenzione allo stato emotivo e all’aspetto psicologico del cane.' },
+  { t: 'Box coibentati', d: 'Atermici, con strutture confortevoli e aree verdi recintate.' },
+  { t: 'Assistenza veterinaria', d: 'Supporto medico su chiamata quando necessario.' },
+];
+---
+<Base title="Pensione per cani a Giugliano · Il Pettirosso" description="Residence per cani a Giugliano in Campania: 42 box coibentati, quattro uscite al giorno, personale presente 24 ore su 24 e visite di inserimento gratuite." image="pensione-hero-new">
+  <Apertura etichetta="Pensione · Residence" titolo="Pensione per cani a Giugliano in Campania" foto="pensione-hero-new" alt="Due operatori del centro con un cane nel prato">
+    <p class="lead">Un ambiente pensato per accogliere il tuo cane durante la tua assenza, dove ogni dettaglio è studiato per garantire il suo benessere. Una struttura legalmente autorizzata, con personale opportunamente formato.</p>
+    <div class="pulsanti"><a class="btn primario" href={u('prenota/')}>Prenota la visita conoscitiva gratuita</a><a class="btn secondario" href="#tariffe">Vedi le tariffe</a></div>
+  </Apertura>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2">
+      <div>
+        <span class="etichetta">Come funziona</span>
+        <h2>Prima ci conosciamo</h2>
+        <p class="testo">Per garantire un inserimento armonioso nel residence è prevista una prima visita conoscitiva tra il cane e la struttura, utile anche alla famiglia. Solo quando il cane dimostra di poter affrontare serenamente questa nuova esperienza, l'inserimento nel residence è considerato opportuno.</p>
+        <p class="testo">Possono essere necessarie una o più visite: il tempo varia in base alla sensibilità del singolo cane. <strong>Questi incontri sono gratuiti.</strong></p>
+        <h3>Protocollo di accoglienza</h3>
+        <ul class="elenco">
+          <li>Colloquio conoscitivo con il proprietario</li>
+          <li>Valutazione del grado di indipendenza e della capacità di distacco</li>
+          <li>Familiarizzazione con struttura, personale e box</li>
+        </ul>
+      </div>
+      <div>
+        <h3>L'incontro</h3>
+        <p>L'arrivo in pensione rappresenta un momento delicato: il cane viene accolto dal nostro staff con pazienza e sensibilità. Questo primo incontro è fondamentale per instaurare un rapporto di fiducia che renderà il soggiorno sereno e appagante.</p>
+        <Video nome="pensione-incontro" didascalia="Un incontro tra cani in pensione." verticale />
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap">
+      <span class="etichetta">Il servizio</span>
+      <h2>Cosa offre il residence</h2>
+      <div class="griglia-2" style="align-items:start">
+        <ul class="elenco">
+          <li>Quattro uscite giornaliere personalizzate, due al mattino e due nel pomeriggio/sera</li>
+          <li>Alimentazione personalizzata e diete su misura</li>
+          <li>Somministrazione di terapie</li>
+          <li>Igiene con pulizie quotidiane</li>
+          <li>Rispetto dei requisiti sanitari a tutela della sicurezza di tutti gli ospiti</li>
+          <li>Attenzione e supporto relazionale e psicologico durante il soggiorno</li>
+          <li>Particolare cura per cuccioli e cani anziani</li>
+          <li>Percorso di pre-affido per una transizione serena</li>
+          <li>Servizio TaxiDog su prenotazione <span class="dc">prezzo da confermare</span></li>
+        </ul>
+        <div class="griglia-2 garanzie">
+          {garanzie.map((g) => <div class="scheda"><h3>{g.t}</h3><p>{g.d}</p></div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2">
+      <Foto nome="residence-box" alt="Il viale tra le siepi e gli alberi del centro" formato="r43" />
+      <div>
+        <span class="etichetta">La struttura</span>
+        <h2>42 box disposti a corte, nel verde</h2>
+        <p class="testo">La pensione, che chiamiamo residence, è composta da quarantadue box coibentati di diverse tipologie e dimensioni, con zona giorno e zona notte. Sono distribuiti secondo uno schema a corte con verde centrale, per garantire privacy, mentre le alberature perimetrali danno frescura d'estate.</p>
+        <p class="testo">Alle spalle dei box ci sono otto paddock recintati e semicoperti, con manto erboso sempre curato, oltre a quattro ampi campi per lo sgambamento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione" id="tariffe">
+    <div class="wrap">
+      <span class="etichetta">Tariffe</span>
+      <h2>Tariffe della pensione</h2>
+      <p class="nota">Prezzo a notte, IVA 22% esclusa, come sul sito attuale. <span class="dc">da confermare: prezzi IVA inclusa</span></p>
+      <div class="tabella-wrap">
+        <table>
+          <thead><tr><th scope="col">Taglia</th><th scope="col">Stagione bassa</th><th scope="col">Stagione alta</th><th scope="col">Stagione altissima</th></tr></thead>
+          <tbody>{tariffe.map((t) => <tr><th scope="row">{t.taglia}</th><td class="prezzo">{t.bassa}</td><td class="prezzo">{t.alta}</td><td class="prezzo">{t.altissima}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <div class="griglia-3 stagioni">
+        <div><h3>Stagione bassa</h3><p>Tutto il resto dell'anno.</p></div>
+        <div><h3>Stagione alta</h3><p>Dall'8 dicembre al 10 gennaio, due settimane a cavallo di Pasqua, festività in rosso.</p></div>
+        <div><h3>Stagione altissima</h3><p>Agosto.</p></div>
+      </div>
+      <h3>Da sapere</h3>
+      <ul class="elenco">
+        <li>La giornata di permanenza va dall'ingresso dell'ospite fino al giorno dopo, entro e non oltre le 10:30.</li>
+        <li>Soggiorno con pernottamento di almeno 2 giorni.</li>
+        <li>Sconto del 40% per il secondo cane dello stesso proprietario.</li>
+        <li>Sconto del 10% per soggiorni di oltre 25 giorni.</li>
+        <li>Su richiesta, durante il soggiorno il cane può fare attività con un educatore cinofilo: €10 all'ora. Mobility dog, passeggiata in campagna, ricerca olfattiva, percorsi sensoriali, socializzazione con altri cani, giochi in piscina (solo d'estate).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2" style="align-items:start">
+      <div>
+        <span class="etichetta">Requisiti sanitari</span>
+        <h2>Cosa serve per il soggiorno</h2>
+        <ul class="elenco">
+          <li>Libretto sanitario aggiornato</li>
+          <li>Vaccinazioni annuali complete</li>
+          <li>Test Leishmania negativo</li>
+          <li>Antiparassitario da non più di 21 giorni</li>
+        </ul>
+        <p class="nota">Microchip e sverminazione sono richiesti anche per la pensione? <span class="dc">da confermare</span></p>
+      </div>
+      <div class="faq">
+        <span class="etichetta">Domande frequenti</span>
+        <details><summary>Serve una visita prima del soggiorno?</summary><p>Sì: una o più visite conoscitive gratuite, finché il cane non è pronto ad affrontare il soggiorno con serenità.</p></details>
+        <details><summary>Come si calcola una giornata?</summary><p>Dall'ingresso fino al giorno dopo, entro e non oltre le 10:30.</p></details>
+        <details><summary>C'è un soggiorno minimo?</summary><p>Sì, almeno 2 giorni con pernottamento.</p></details>
+        <details><summary>Il cane può fare attività durante il soggiorno?</summary><p>Sì, su richiesta, con un educatore cinofilo: €10 all'ora.</p></details>
+        <details><summary>Ci sono sconti?</summary><p>Il 40% sul secondo cane dello stesso proprietario e il 10% per soggiorni di oltre 25 giorni.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <InvitoVisita titolo="Prenota la visita conoscitiva" />
+</Base>
+<style>
+  .garanzie { gap: 1rem; }
+  .garanzie .scheda p { margin: 0; font-size: var(--t-s); }
+  .stagioni { margin-block: 1.75rem; }
+  .stagioni h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+  .stagioni p { margin: 0; font-size: var(--t-s); }
+  th[scope='row'] { font-weight: 600; color: var(--testo); }
+</style>

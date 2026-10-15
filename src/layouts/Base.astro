@@ -1,0 +1,164 @@
+---
+import '@fontsource/playfair-display/500.css';
+import '@fontsource/playfair-display/600.css';
+import '@fontsource/playfair-display/500-italic.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import '../styles/global.css';
+import { site, whatsappTesto } from '../data/site';
+import { u } from '../lib';
+
+interface Props { title: string; description: string; image?: string; jsonld?: boolean; }
+const { title, description, image = 'chi-siamo-hero', jsonld = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(u(`img/${image}.webp`), Astro.site).href;
+const path = Astro.url.pathname;
+const attivo = (p: string) => (path.startsWith(u(p)) ? 'page' : undefined);
+
+const menu = [
+  { href: 'pensione-per-cani/', label: 'Pensione' },
+  { href: 'asilo-per-cani/', label: 'Asilo' },
+  { href: 'educazione-cinofila/', label: 'Educazione' },
+  { href: 'riabilitazione-comportamentale/', label: 'Riabilitazione' },
+  { href: 'chi-siamo/', label: 'Chi siamo' },
+  { href: 'blog/', label: 'Blog' },
+  { href: 'contatti/', label: 'Contatti' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.nome,
+  url: new URL(u(''), Astro.site).href,
+  image: new URL(u('brand/logo.png'), Astro.site).href,
+  telephone: site.telefono,
+  email: site.email,
+  foundingDate: String(site.dal),
+  address: { '@type': 'PostalAddress', streetAddress: 'Via degli ex-alleati km 6.00, località Centore', addressLocality: 'Giugliano in Campania', addressRegion: 'NA', addressCountry: 'IT' },
+  sameAs: [site.instagram],
+};
+---
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {__DEMO__ ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonical} />}
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="theme-color" content="#F9F5F0" />
+  <link rel="icon" type="image/png" href={u('brand/zampa.png')} />
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+</head>
+<body>
+  <a class="salta" href="#contenuto">Vai al contenuto</a>
+  {__DEMO__ && (
+    <div class="demo-bar" role="note">Anteprima del nuovo sito · contenuti in revisione · le etichette <span class="dc">da confermare</span> segnano i dati da verificare</div>
+  )}
+  <header class="testata">
+    <div class="wrap testata-in">
+      <a class="marchio" href={u('')} aria-label="Centro Cinofilo Il Pettirosso, home">
+        <img src={u('brand/zampa.png')} alt="" width="40" height="40" />
+        <span><small>Centro cinofilo</small>Il Pettirosso</span>
+      </a>
+      <nav class="menu-desktop" aria-label="Menu principale">
+        {menu.map((m) => <a href={u(m.href)} aria-current={attivo(m.href)}>{m.label}</a>)}
+      </nav>
+      <a class="btn primario cta-testata" href={u('prenota/')}>Prenota una visita</a>
+      <details class="menu-mobile">
+        <summary aria-label="Apri il menu">Menu</summary>
+        <nav aria-label="Menu">
+          {menu.map((m) => <a href={u(m.href)} aria-current={attivo(m.href)}>{m.label}</a>)}
+          <a href={u('attivita/')}>Attività</a>
+          <a href={u('gallery/')}>Gallery</a>
+          <a class="btn primario" href={u('prenota/')}>Prenota una visita</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="contenuto">
+    <slot />
+  </main>
+
+  <footer class="piede">
+    <div class="wrap piede-griglia">
+      <div>
+        <img src={u('brand/logo.webp')} alt="Centro cinofilo Il Pettirosso" width="140" height="140" class="piede-logo" />
+        <p>Dal 2006 promuoviamo il benessere del cane attraverso metodi basati sul rispetto, la comprensione e la relazione.</p>
+      </div>
+      <div>
+        <h2>Dove siamo</h2>
+        <p>{site.sedeOperativa}</p>
+        <p><a href={site.mappa} rel="noopener">Apri in Google Maps</a></p>
+      </div>
+      <div>
+        <h2>Orari {site.orari.daConfermare && <span class="dc">da confermare</span>}</h2>
+        <p>Inverno: {site.orari.inverno}<br />Estate: {site.orari.estate}<br />{site.orari.domenica}<br /><em>{site.orari.nota}</em></p>
+      </div>
+      <div>
+        <h2>Contatti</h2>
+        <p><a href={site.telefonoLink}>{site.telefono}</a><br /><a href={site.whatsapp} rel="noopener">WhatsApp</a><br /><a href={`mailto:${site.email}`}>{site.email}</a><br /><a href={site.instagram} rel="noopener">Instagram</a> · Facebook <span class="dc">da confermare</span></p>
+      </div>
+    </div>
+    <div class="wrap piede-basso">
+      <nav aria-label="Altre pagine">
+        <a href={u('attivita/')}>Attività</a>
+        <a href={u('gallery/')}>Gallery</a>
+        <a href={u('tu-torni-sempre/')}>Tu torni sempre</a>
+        <a href={u('privacy/')}>Privacy</a>
+        <a href={u('cookie/')}>Cookie</a>
+      </nav>
+      <p>{site.ragioneSociale} · Sede legale: {site.sedeLegale} · P.IVA {site.piva}</p>
+    </div>
+  </footer>
+
+  <a class="wa-fisso" href={whatsappTesto('Ciao, vorrei prenotare una visita conoscitiva per il mio cane')} rel="noopener" aria-label="Scrivici su WhatsApp">
+    <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.9 5.2 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4Z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+</body>
+</html>
+
+<style is:global>
+  .salta { position: absolute; left: -999px; top: 0; background: var(--testo); color: #fff; padding: 0.5rem 1rem; z-index: 50; }
+  .salta:focus { left: 1rem; }
+  .demo-bar { background: var(--testo); color: var(--crema); font-size: var(--t-xs); text-align: center; padding: 0.45rem var(--gutter-r) 0.45rem var(--gutter); }
+  .testata { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(249, 245, 240, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--sabbia); }
+  .testata-in { display: flex; align-items: center; gap: 1.25rem; min-height: 68px; }
+  .marchio { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--testo); margin-right: auto; }
+  .marchio span { font-family: var(--f-titoli); font-size: 1.25rem; font-weight: 600; line-height: 1.05; display: grid; }
+  .marchio small { font-family: var(--f-testo); font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--marrone); }
+  .menu-desktop { display: flex; gap: 1.1rem; }
+  .menu-desktop a { color: var(--testo); text-decoration: none; font-size: var(--t-s); font-weight: 600; padding-block: 0.25rem; border-bottom: 2px solid transparent; }
+  .menu-desktop a:hover, .menu-desktop a[aria-current='page'] { border-bottom-color: var(--arancio); color: var(--testo); }
+  .cta-testata { padding: 0.6rem 1.1rem; }
+  .menu-mobile { display: none; position: relative; }
+  .menu-mobile summary { list-style: none; cursor: pointer; font-weight: 600; border: 1px solid var(--sabbia); border-radius: 999px; padding: 0.5rem 1rem; background: var(--carta); }
+  .menu-mobile summary::-webkit-details-marker { display: none; }
+  .menu-mobile nav { position: absolute; right: 0; top: calc(100% + 0.5rem); background: var(--carta); border: 1px solid var(--sabbia); border-radius: var(--raggio); padding: 0.75rem; display: grid; gap: 0.25rem; min-width: 230px; box-shadow: 0 12px 30px rgba(95, 67, 55, 0.15); }
+  .menu-mobile nav a { padding: 0.55rem 0.75rem; color: var(--testo); text-decoration: none; border-radius: 8px; font-weight: 600; }
+  .menu-mobile nav a.btn { color: #fff; justify-content: center; margin-top: 0.5rem; }
+  .menu-mobile nav a[aria-current='page'] { background: var(--beige); }
+  @media (max-width: 1040px) { .menu-desktop, .cta-testata { display: none; } .menu-mobile { display: block; } }
+
+  .piede { background: var(--testo); color: #EFE4D8; margin-top: 0; font-size: var(--t-s); }
+  .piede a { color: #FFD3A8; }
+  .piede h2 { font-family: var(--f-testo); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.12em; color: #EFE4D8; margin-bottom: 0.75rem; }
+  .piede-griglia { display: grid; gap: 2rem; grid-template-columns: 1.3fr 1fr 1fr 1fr; padding-block: 3.5rem 2rem; }
+  .piede-logo { background: var(--crema); border-radius: 12px; padding: 6px; margin-bottom: 1rem; }
+  .piede-basso { border-top: 1px solid rgba(239, 228, 216, 0.2); padding-block: 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+  .piede-basso nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+  .piede-basso p { margin: 0; opacity: 0.85; }
+  @media (max-width: 900px) { .piede-griglia { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .piede-griglia { grid-template-columns: 1fr; } }
+
+  .wa-fisso { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: inline-flex; align-items: center; gap: 0.45rem; background: #1F7A4D; color: #fff; text-decoration: none; font-weight: 600; font-size: var(--t-s); padding: 0.75rem 1.1rem; border-radius: 999px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
+  .wa-fisso:hover { background: #17633E; color: #fff; }
+  @media (max-width: 480px) { .wa-fisso span { display: none; } .wa-fisso { padding: 0.85rem; } }
+</style>

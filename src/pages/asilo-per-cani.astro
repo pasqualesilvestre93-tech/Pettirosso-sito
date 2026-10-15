@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import Apertura from '../components/Apertura.astro';
+import Foto from '../components/Foto.astro';
+import InvitoVisita from '../components/InvitoVisita.astro';
+import { u } from '../lib';
+
+const giornata = [
+  { ora: '8:00 – 8:55', titolo: 'Accoglienza', testo: 'Arrivo dei cani e accoglienza.' },
+  { ora: '9:00 – 13:00', titolo: 'Vita sociale', testo: 'I cani svolgono vita sociale in gruppi di compatibilità, liberi sotto il vigile controllo di un educatore che incentiva e gestisce le interazioni.' },
+  { ora: '13:00 – 13:30', titolo: 'Ritorno a casa', testo: 'Alcuni cani tornano a casa con i proprietari, altri con il TaxiDog, altri ancora vanno in box e attendono il ritiro del pomeriggio, intanto consumano un pasto e riposano. Il ritiro è gestito dagli operatori, per evitare risse tra i cani: il proprietario aspetta nel parcheggio che gli venga consegnato il cane.' },
+];
+---
+<Base title="Asilo per cani a Giugliano · Il Pettirosso" description="Asilo giornaliero per cani a Giugliano in Campania: gruppi di compatibilità, educatori esperti, inserimento graduale con visite gratuite. Pacchetti da 8 e 10 ingressi." image="gallery-asilo-2025">
+  <Apertura etichetta="Asilo giornaliero" titolo="Asilo per cani a Giugliano in Campania" foto="gallery-asilo-2025" alt="Ferdinando al campo con i cani dell'asilo">
+    <p class="lead">Nell'asilo giornaliero promuoviamo esperienze ludiche tra cani e tra cani e umani: esplorazione, lotta, inseguimento, perlustrazione, scavo, amicizie, corteggiamenti e persino amori.</p>
+    <div class="pulsanti"><a class="btn primario" href={u('prenota/')}>Prenota la visita conoscitiva gratuita</a><a class="btn secondario" href="#tariffe">Vedi le tariffe</a></div>
+  </Apertura>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2">
+      <div>
+        <span class="etichetta">Per chi è</span>
+        <h2>Cuccioli, adulti e cani che hanno bisogno di sostegno</h2>
+        <p class="testo">I gruppi di cani vengono selezionati con cura, così che la socializzazione avvenga in maniera naturale, nel rispetto dei tempi di ogni individuo e sotto la guida vigile di un educatore esperto, in un contesto piacevole ma anche sicuro.</p>
+        <p class="testo">Accogliamo cuccioli, cani giovani e adulti, ma anche quelli che hanno difficoltà di relazione con gli umani o con i propri simili: siamo convinti che il rapporto con simili competenti, i cosiddetti <em>teacher dog</em>, possa essere per loro un aiuto importante.</p>
+        <p class="testo">Per ciascuno costruiamo anche all'interno dell'asilo percorsi educativi o riabilitativi, e in questo caso ci avvaliamo di un medico veterinario comportamentalista.</p>
+      </div>
+      <Foto nome="gallery-cosa-facciamo--tira-e-molla" alt="Un educatore gioca a tira e molla con un cane al campo" formato="r43" />
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap">
+      <span class="etichetta">La giornata</span>
+      <h2>Una mattina all'asilo</h2>
+      <ol class="giornata">
+        {giornata.map((g) => (
+          <li><span class="ora">{g.ora}</span><div><h3>{g.titolo}</h3><p>{g.testo}</p></div></li>
+        ))}
+      </ol>
+      <h3>Il servizio di asilo offre</h3>
+      <ul class="elenco testo">
+        <li>Quattro ore di attività al giorno in un gruppo di compatibilità o in coppia, con la supervisione costante di un educatore</li>
+        <li>Aree di sgambamento non boschive, con pulizia quotidiana e manutenzione del verde</li>
+        <li>Rispetto dei requisiti sanitari a tutela della sicurezza di tutti gli ospiti</li>
+        <li>Supporto relazionale e psicologico per i cani con difficoltà iniziali nell'inserimento sociale</li>
+        <li>Particolare attenzione e cura per cuccioli e cani anziani</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2" style="align-items:start">
+      <div>
+        <span class="etichetta">L'inserimento</span>
+        <h2>Un passo alla volta</h2>
+        <p class="testo">L'obiettivo è dare al cane l'occasione di vivere appaganti esperienze sociali in un ambiente sicuro. Per questo l'inserimento è graduale e tiene conto delle sue difficoltà a interagire con i simili e dei suoi tempi.</p>
+        <ul class="elenco">
+          <li>Colloquio conoscitivo con proprietario e cane</li>
+          <li>Valutazione del grado di indipendenza e capacità di distacco dal proprietario, socievolezza verso l'umano</li>
+          <li>Valutazione delle competenze sociali verso gli altri cani e dell'interesse a incontrarli</li>
+        </ul>
+        <p class="testo">In genere servono due o tre visite preliminari in cui il cane resta con il suo referente umano, prima di affidarlo agli educatori. Gli incontri durano al massimo un'ora e <strong>sono gratuiti</strong>.</p>
+      </div>
+      <Foto nome="gallery-brutti-porci" alt="Due cani che giocano rotolandosi nel prato" formato="r34" />
+    </div>
+  </section>
+
+  <section class="sezione" id="tariffe">
+    <div class="wrap griglia-2" style="align-items:start">
+      <div>
+        <span class="etichetta">Tariffe</span>
+        <h2>Tariffe dell'asilo</h2>
+        <div class="tabella-wrap">
+          <table>
+            <thead><tr><th scope="col">Formula</th><th scope="col">Prezzo</th><th scope="col">A ingresso</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Ingresso giornaliero</th><td class="prezzo">€20</td><td>€20</td></tr>
+              <tr><th scope="row">Pacchetto 8 ingressi</th><td class="prezzo">€135</td><td>€16,88</td></tr>
+              <tr><th scope="row">Pacchetto 10 ingressi</th><td class="prezzo">€150</td><td>€15</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="nota">I pacchetti si pagano in anticipo a inizio mese e vanno utilizzati entro il mese. I giorni di pioggia si recuperano se nel mese non restano altri giorni disponibili.</p>
+      </div>
+      <div>
+        <span class="etichetta">Quando</span>
+        <h2>Calendario</h2>
+        <ul class="elenco">
+          <li>Solo nei giorni dispari e quando non piove</li>
+          <li>Attivo tutto l'anno fino a giugno</li>
+          <li>Chiuso a luglio e agosto, riapre il 15 settembre</li>
+        </ul>
+        <h3>Requisiti sanitari</h3>
+        <ul class="elenco">
+          <li>Libretto sanitario con vaccini, aggiornato</li>
+          <li>Certificato microchip</li>
+          <li>Vaccinazioni annuali complete</li>
+          <li>Sverminazione da non più di 6 mesi</li>
+          <li>Test Leishmania negativo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap faq testo">
+      <span class="etichetta">Domande frequenti</span>
+      <h2>Prima di iscriverti</h2>
+      <details><summary>Il mio cane è timido con gli altri cani: può venire?</summary><p>Sì. Accogliamo anche cani con difficoltà di relazione, con un inserimento graduale e il supporto di cani competenti.</p></details>
+      <details><summary>Quanto dura l'inserimento?</summary><p>In genere due o tre visite preliminari gratuite, di massimo un'ora, con il proprietario presente.</p></details>
+      <details><summary>In quali giorni si svolge?</summary><p>Nei giorni dispari, quando non piove, dal 15 settembre a fine giugno.</p></details>
+      <details><summary>Cosa succede se piove?</summary><p>L'asilo non si svolge; i giorni di pioggia si recuperano se nel mese non restano altri giorni disponibili.</p></details>
+    </div>
+  </section>
+
+  <InvitoVisita titolo="Prenota la prima visita all'asilo" />
+</Base>
+<style>
+  .giornata { list-style: none; padding: 0; margin: 2rem 0 2.5rem; display: grid; gap: 0; border-left: 2px solid var(--sabbia); }
+  .giornata li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1.5rem; padding: 0 0 1.75rem 1.5rem; position: relative; }
+  .giornata li::before { content: ''; position: absolute; left: -7px; top: 0.45rem; width: 12px; height: 12px; border-radius: 50%; background: var(--arancio); }
+  .giornata .ora { font-family: var(--f-titoli); font-size: 1.15rem; color: var(--arancio-scuro); font-variant-numeric: tabular-nums; }
+  .giornata h3 { margin-bottom: 0.25rem; }
+  .giornata p { margin: 0; max-width: 62ch; }
+  @media (max-width: 560px) { .giornata li { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; } }
+</style>

@@ -1,0 +1,18 @@
+---
+import { u } from '../lib';
+interface Props { nome: string; didascalia?: string; verticale?: boolean; }
+const { nome, didascalia, verticale = false } = Astro.props;
+---
+<figure class:list={['video-fig', { verticale }]}>
+  <div class="video">
+    <video controls preload="none" playsinline poster={u(`video/${nome}.jpg`)}>
+      <source src={u(`video/${nome}.mp4`)} type="video/mp4" />
+    </video>
+  </div>
+  {didascalia && <figcaption>{didascalia}</figcaption>}
+</figure>
+<style>
+  .video-fig { margin: 0; }
+  .verticale .video { max-width: 380px; margin-inline: auto; }
+  .verticale figcaption { max-width: 380px; margin-inline: auto; }
+</style>

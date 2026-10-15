@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import Foto from '../components/Foto.astro';
+import Video from '../components/Video.astro';
+import InvitoVisita from '../components/InvitoVisita.astro';
+
+const foto = [
+  { n: 'gallery-asilo-2025', t: 'Asilo cani 2025', f: 'r43' },
+  { n: 'gallery-pacchia-relax', t: 'Momenti di relax', f: 'r43' },
+  { n: 'gallery-denver-bimbo', t: 'Denver con il bambino', f: 'r43' },
+  { n: 'gallery-mau-family-verde', t: 'Famiglia nel verde', f: 'r34' },
+  { n: 'gallery-lucky-family', t: 'Lucky con la famiglia', f: 'r43' },
+  { n: 'gallery-casch-family', t: 'Famiglia Casch', f: 'r34' },
+  { n: 'gallery-elena-sally', t: 'Elena e Sally', f: 'r43' },
+  { n: 'gallery-enzo-rosaria-snoopy', t: 'Enzo, Rosaria e Snoopy', f: 'r34' },
+  { n: 'gallery-amira-sasa-family', t: 'Amira e Sasa con la famiglia', f: 'r43' },
+  { n: 'gallery-monica-federica-titti', t: 'Monica, Federica e Titti', f: 'r34' },
+  { n: 'gallery-mauy-family', t: 'Mauy con la famiglia', f: 'r43' },
+  { n: 'gallery-lucky-dalmata', t: 'Lucky il dalmata', f: 'r34' },
+  { n: 'gallery-amira-cucciola', t: 'Amira cucciola', f: 'r34' },
+  { n: 'gallery-mauy', t: 'Ritratto di Mauy', f: 'r34' },
+  { n: 'gallery-casch', t: 'Casch', f: 'r34' },
+  { n: 'gallery-denver', t: 'Denver', f: 'r34' },
+  { n: 'gallery-flv-2255-migliorato-nr', t: 'Ritratto del cane', f: 'r43' },
+  { n: 'gallery-obbedienza', t: 'Obbedienza in campo', f: 'r43' },
+  { n: 'gallery-aisha-adri', t: 'Aisha e Adri', f: 'r34' },
+  { n: 'gallery-dsc04102', t: '', f: 'r34' },
+  { n: 'gallery-dsc02967-copia-1', t: '', f: 'r43' },
+  { n: 'gallery-pranzo-gruppo', t: 'I nostri amici a pranzo', f: 'r43' },
+  { n: 'gallery-cosa-facciamo--piscina', t: 'Giochi in piscina', f: 'r43' },
+  { n: 'gallery-cosa-facciamo--bambini-e-cani-1', t: 'Bambini e cani', f: 'r43' },
+] as const;
+const passato = ['york-passato-2', 'york-passato-3', 'york-passato-5', 'york-passato-7'];
+---
+<Base title="Gallery · Centro Cinofilo Il Pettirosso" description="Foto e video dal Centro Cinofilo Il Pettirosso: cani ospiti, famiglie, asilo, seminari e momenti del passato." image="gallery-asilo-2025">
+  <section class="sezione stretta">
+    <div class="wrap">
+      <span class="etichetta">Gallery</span>
+      <h1>Momenti dal Pettirosso</h1>
+      <p class="lead">Una raccolta di momenti catturati durante le nostre attività: cani ospiti, famiglie, il verde che ci circonda.</p>
+    </div>
+  </section>
+
+  <section class="sezione stretta">
+    <div class="wrap galleria">
+      {foto.map((x) => <Foto nome={x.n} alt={x.t || 'Un momento al campo del Pettirosso'} formato={x.f} didascalia={x.t || undefined} />)}
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap">
+      <span class="etichetta">Esperienze</span>
+      <h2>Con il Gruppo Cinofilo dei Carabinieri</h2>
+      <div class="griglia-2" style="align-items:start">
+        <Video nome="carabinieri-cinofili-1" verticale />
+        <Video nome="carabinieri-cinofili-2" verticale />
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap">
+      <span class="etichetta">Seminari</span>
+      <h2>Formazione al campo</h2>
+      <div class="griglia-2" style="align-items:start">
+        <Video nome="seminario-luigi-di-leo" didascalia="Seminario con Luigi di Leo." />
+        <div class="griglia-2 coppia">
+          <Foto nome="seminario-vitalini-1" alt="Seminario con Ivano Vitalini, attività con cane" formato="r43" />
+          <Foto nome="seminario-vitalini-2" alt="Seminario con Ivano Vitalini, esercizio di mobility" formato="r43" />
+          <Foto nome="seminario-vitalini-3" alt="Seminario con Ivano Vitalini, foto di gruppo" formato="r43" />
+          <Foto nome="seminario-vitalini-locandina" alt="Locandina del seminario con Ivano Vitalini" formato="r43" />
+        </div>
+      </div>
+      <p class="nota">Seminario con Ivano Vitalini: «Muovere il corpo per muovere la mente».</p>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap">
+      <span class="etichetta">Momenti del passato</span>
+      <h2>L'unica differenza… era la coda.</h2>
+      <div class="griglia-4">
+        {passato.map((n) => <Foto nome={n} alt="Ferdinando da giovane con il suo cane" formato="r34" />)}
+      </div>
+    </div>
+  </section>
+
+  <InvitoVisita />
+</Base>
+<style>
+  .galleria { display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+  @media (max-width: 900px) { .galleria { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .galleria { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .coppia { gap: 0.75rem; }
+  @media (max-width: 720px) { .coppia { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

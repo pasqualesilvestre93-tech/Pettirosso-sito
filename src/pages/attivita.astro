@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Apertura from '../components/Apertura.astro';
+import Foto from '../components/Foto.astro';
+import Video from '../components/Video.astro';
+import InvitoVisita from '../components/InvitoVisita.astro';
+---
+<Base title="Attività per cani: fiuto, Mobility Dog, TTouch · Il Pettirosso" description="Esperienze sociali, olfattive, cognitive, Mobility Dog e Tellington TTouch al Centro Cinofilo Il Pettirosso di Giugliano." image="mobility-dog-1">
+  <Apertura etichetta="Attività" titolo="Esperienze attraverso attività ludiche" foto="gallery-cosa-facciamo--mobility" alt="Un cane su un attrezzo di mobility con un educatore">
+    <p class="lead">Esperienze sociali, olfattive, cognitive e di mobility dog per stimolare corpo e mente del cane, rafforzare il legame con la famiglia e migliorare la vita quotidiana insieme.</p>
+    <p class="testo">Incontriamo i cani e le loro famiglie e li affianchiamo in percorsi individuali utili alla loro crescita e al rapporto con la famiglia umana.</p>
+  </Apertura>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-3">
+      <div class="scheda">
+        <h3>Esperienze sociali</h3>
+        <p>Affianchiamo il proprietario per agevolare il cane nelle esperienze con i contesti domestici, urbani e naturali, nell'incontro con umani, con animali di altre specie e infine con i propri simili.</p>
+      </div>
+      <div class="scheda">
+        <h3>Esperienze olfattive</h3>
+        <p>Stimolano e sviluppano le straordinarie capacità naturali di ricerca del cane. Proponiamo esperienze strutturate e guidate, ma anche momenti liberi in natura o in città: usare il naso rafforza concentrazione, autostima e legame con il proprietario.</p>
+      </div>
+      <div class="scheda">
+        <h3>Esperienze di cognizione</h3>
+        <p>Più che attività costruite a tavolino, cogliamo le occasioni della vita quotidiana che impegnano la mente del cane senza trascurare il corpo. Così impara ad affrontare le sfide con calma e sicurezza, migliorando adattamento e collaborazione con l'umano.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap griglia-2">
+      <div>
+        <span class="etichetta">Mobility Dog</span>
+        <h2>«Muovere il corpo per muovere la mente»</h2>
+        <p class="testo">La Mobility Dog mette al centro il benessere psicofisico del cane. È un'attività non agonistica: cane e proprietario affrontano insieme semplici strutture di palestra, con difficoltà crescenti proposte tenendo conto delle motivazioni e della disponibilità del cane.</p>
+        <p class="testo">Ogni esercizio richiede concentrazione, equilibrio e fiducia, e aiuta il cane a diventare più consapevole del proprio corpo. L'umano, intanto, affina la comunicazione non verbale: postura, gesti, orientamento, tono della voce. Il risultato è una relazione più solida e collaborativa.</p>
+      </div>
+      <Video nome="mobility-altalena-new" didascalia="Mobility Dog: esercizio sull'altalena." />
+    </div>
+    <div class="wrap griglia-3 galleria-mini">
+      <Foto nome="mobility-dog-1" alt="Esercizio di mobility sulla rampa" formato="r43" />
+      <Foto nome="mobility-dog-2" alt="Il campo attrezzi di mobility" formato="r43" />
+      <Foto nome="mobility-dog-3" alt="Esercizio di mobility con rampa" formato="r43" />
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2">
+      <Foto nome="gallery-cosa-facciamo--tellingthon-ttouch" alt="Una sessione di Tellington TTouch" formato="r43" />
+      <div>
+        <span class="etichetta">Tellington TTouch</span>
+        <h2>Un lavoro dolce su corpo e mente</h2>
+        <p class="testo">Il Tellington TTouch è un metodo di lavoro fisico e mentale per gli animali ideato da Linda Tellington-Jones. Si basa su movimenti circolari delicati, carezze e leggere manipolazioni del corpo, con esercizi di groundwork su attrezzi specifici. L'obiettivo è migliorare consapevolezza corporea ed equilibrio, ridurre lo stress e rafforzare la relazione tra uomo e animale.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap">
+      <Video nome="video-2" didascalia="Mobility Dog al Pettirosso." />
+    </div>
+  </section>
+
+  <InvitoVisita titolo="Vuoi provare con il tuo cane?" />
+</Base>
+<style>.galleria-mini { margin-top: 2rem; }</style>

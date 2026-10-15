@@ -1,0 +1,12 @@
+---
+import { img } from '../lib';
+interface Props { nome: string; alt: string; formato?: 'r43' | 'r34' | 'r169' | 'libero'; didascalia?: string; eager?: boolean; }
+const { nome, alt, formato = 'r43', didascalia, eager = false } = Astro.props;
+---
+<figure class="foto-fig">
+  <div class:list={['foto', formato !== 'libero' && formato]}>
+    <img src={img(nome)} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  </div>
+  {didascalia && <figcaption>{didascalia}</figcaption>}
+</figure>
+<style>.foto-fig { margin: 0; min-width: 0; }</style>

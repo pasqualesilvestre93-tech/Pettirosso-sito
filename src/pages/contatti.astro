@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import Foto from '../components/Foto.astro';
+import { site } from '../data/site';
+import { u } from '../lib';
+---
+<Base title="Contatti e orari · Centro Cinofilo Il Pettirosso" description="Orari, indirizzo, telefono e indicazioni per raggiungere il Centro Cinofilo Il Pettirosso a Giugliano in Campania, località Centore." image="struttura-oggi">
+  <section class="sezione stretta">
+    <div class="wrap">
+      <span class="etichetta">Contatti</span>
+      <h1>Mettiamoci in contatto</h1>
+      <p class="lead">Siamo lieti di accogliere qualsiasi domanda o di fissare un appuntamento. Per consulenze e consigli chiamaci al {site.telefono} o scrivici su WhatsApp: ti risponderemo appena possibile.</p>
+      <div class="pulsanti">
+        <a class="btn primario" href={site.whatsapp} rel="noopener">Scrivici su WhatsApp</a>
+        <a class="btn secondario" href={site.telefonoLink}>Chiama {site.telefono}</a>
+        <a class="btn secondario" href={u('prenota/')}>Prenota una visita</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-3" style="align-items:start">
+      <div class="scheda">
+        <h2 class="h3">Orari {site.orari.daConfermare && <span class="dc">da confermare</span>}</h2>
+        <p><strong>Inverno</strong><br />{site.orari.inverno}</p>
+        <p><strong>Estate</strong><br />{site.orari.estate}</p>
+        <p>{site.orari.domenica}<br /><em>{site.orari.nota}</em></p>
+      </div>
+      <div class="scheda">
+        <h2 class="h3">Recapiti</h2>
+        <p><strong>Telefono e WhatsApp</strong><br /><a href={site.telefonoLink}>{site.telefono}</a> (Ferdinando)</p>
+        <p><strong>Email</strong><br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p><strong>Instagram</strong><br /><a href={site.instagram} rel="noopener">@ilpettirosso_</a></p>
+      </div>
+      <div class="scheda">
+        <h2 class="h3">Sedi</h2>
+        <p><strong>Sede sociale e operativa</strong><br />{site.sedeOperativa}</p>
+        <p><strong>Sede legale</strong><br />{site.ragioneSociale}<br />{site.sedeLegale}<br />P.IVA {site.piva}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sezione">
+    <div class="wrap griglia-2" style="align-items:start">
+      <div>
+        <span class="etichetta">Come raggiungerci</span>
+        <h2>Punti di riferimento</h2>
+        <ul class="elenco">{site.puntiRiferimento.map((p) => <li>{p}</li>)}</ul>
+        <h3>Indicazioni stradali</h3>
+        {site.indicazioni.map((i) => <p><strong>{i.da}</strong><br />{i.percorso}</p>)}
+        <div class="pulsanti"><a class="btn primario" href={site.mappa} rel="noopener">Apri in Google Maps</a></div>
+      </div>
+      <Foto nome="struttura-oggi" alt="L'ingresso del centro con il giardino e la tendostruttura" formato="r34" />
+    </div>
+  </section>
+</Base>
+<style>.h3 { font-size: var(--t-l); color: var(--testo); }</style>

@@ -1,0 +1,131 @@
+/* Concetto: un quaderno di campo caldo e luminoso. Colori e font del marchio Il Pettirosso
+   (arancio della zampa, marroni, crema). Molto spazio, foto reali, pochi effetti. */
+:root {
+  --crema: #F9F5F0;
+  --beige: #F5EFE7;
+  --sabbia: #E8DCCD;
+  --carta: #FFFDFA;
+  --testo: #5F4337;
+  --marrone: #7E5C50;
+  --arancio-scuro: #B84600;
+  --arancio: #E16702;
+  --oro: #C8A269;
+  --avviso-bg: #FFF1D6;
+  --avviso-fg: #7A4300;
+
+  --f-titoli: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-testo: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --t-xs: 0.8125rem;
+  --t-s: 0.9375rem;
+  --t-m: 1.0625rem;
+  --t-l: 1.375rem;
+  --t-xl: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+  --t-xxl: clamp(2.1rem, 1.4rem + 3.2vw, 3.6rem);
+
+  --raggio: 14px;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--testo);
+  font-family: var(--f-testo);
+  font-size: var(--t-m);
+  line-height: 1.65;
+}
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: var(--arancio-scuro); text-underline-offset: 3px; }
+a:hover { color: var(--testo); }
+:focus-visible { outline: 3px solid var(--arancio); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3 { font-family: var(--f-titoli); color: var(--arancio-scuro); line-height: 1.15; text-wrap: balance; margin: 0 0 0.5em; font-weight: 600; }
+h1 { font-size: var(--t-xxl); }
+h2 { font-size: var(--t-xl); }
+h3 { font-size: var(--t-l); color: var(--testo); }
+p { margin: 0 0 1em; }
+.lead { font-size: 1.1875rem; color: var(--marrone); max-width: 62ch; }
+.testo { max-width: 68ch; }
+.etichetta { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.12em; color: var(--marrone); font-weight: 600; margin-bottom: 0.6rem; display: block; }
+
+.wrap { max-width: 1120px; margin-inline: auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
+.sezione { padding-block: clamp(3rem, 6vw, 5.5rem); }
+.sezione.stretta { padding-block: clamp(2rem, 4vw, 3rem); }
+.fascia { background: var(--beige); }
+.fascia-scura { background: var(--testo); color: var(--crema); }
+.fascia-scura h2, .fascia-scura h3 { color: var(--crema); }
+.fascia-scura a { color: #FFD3A8; }
+
+.griglia-2 { display: grid; gap: clamp(1.5rem, 4vw, 3.5rem); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+.griglia-3 { display: grid; gap: 1.5rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.griglia-4 { display: grid; gap: 1.25rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 900px) { .griglia-3, .griglia-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .griglia-2 { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .griglia-3, .griglia-4 { grid-template-columns: minmax(0, 1fr); } }
+
+.foto { border-radius: var(--raggio); overflow: hidden; background: var(--sabbia); }
+.foto img { width: 100%; height: 100%; object-fit: cover; }
+.foto.r43 { aspect-ratio: 4 / 3; }
+.foto.r34 { aspect-ratio: 3 / 4; }
+.foto.r169 { aspect-ratio: 16 / 9; }
+figcaption { font-size: var(--t-s); color: var(--marrone); margin-top: 0.5rem; }
+
+.pulsanti { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.35rem; border-radius: 999px; font-weight: 600; font-size: var(--t-s); text-decoration: none; border: 2px solid var(--arancio-scuro); line-height: 1.2; }
+.btn.primario { background: var(--arancio-scuro); color: #fff; }
+.btn.primario:hover { background: #9C3B00; border-color: #9C3B00; color: #fff; }
+.btn.secondario { background: transparent; color: var(--arancio-scuro); }
+.btn.secondario:hover { background: var(--carta); color: var(--testo); }
+.fascia-scura .btn.secondario { color: var(--crema); border-color: var(--crema); }
+
+.dc { display: inline-block; font-family: var(--f-testo); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; background: var(--avviso-bg); color: var(--avviso-fg); border: 1px solid var(--oro); border-radius: 999px; padding: 0.1rem 0.5rem; vertical-align: middle; white-space: nowrap; }
+
+.elenco { padding-left: 1.2rem; margin: 0 0 1.25rem; }
+.elenco li { margin-bottom: 0.4rem; }
+.elenco li::marker { color: var(--arancio); }
+
+.scheda { background: var(--carta); border: 1px solid var(--sabbia); border-radius: var(--raggio); padding: 1.5rem; min-width: 0; }
+.scheda h3 { margin-bottom: 0.35rem; }
+
+.tabella-wrap { overflow-x: auto; border-radius: var(--raggio); border: 1px solid var(--sabbia); background: var(--carta); }
+table { border-collapse: collapse; width: 100%; min-width: 480px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 0.8rem 1rem; border-bottom: 1px solid var(--sabbia); }
+thead th { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--marrone); background: var(--beige); }
+tbody tr:last-child td { border-bottom: 0; }
+td.prezzo { font-weight: 600; color: var(--testo); }
+
+.faq details { border-bottom: 1px solid var(--sabbia); padding: 1rem 0; }
+.faq summary { cursor: pointer; font-weight: 600; color: var(--testo); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; color: var(--arancio-scuro); font-size: 1.4rem; line-height: 1; }
+.faq details[open] summary::after { content: '–'; }
+.faq details p { margin: 0.75rem 0 0; }
+
+.citazione { font-family: var(--f-titoli); font-style: italic; font-size: clamp(1.3rem, 1rem + 1.2vw, 1.75rem); line-height: 1.4; color: var(--testo); border-left: 3px solid var(--arancio); padding-left: 1.25rem; margin: 0; }
+.citazione cite { display: block; font-family: var(--f-testo); font-style: normal; font-size: var(--t-s); color: var(--marrone); margin-top: 0.75rem; }
+
+.video { border-radius: var(--raggio); overflow: hidden; background: #2b211c; }
+.video video { width: 100%; max-height: 80vh; background: #2b211c; }
+
+.cta-finale { text-align: center; }
+.cta-finale .lead { margin-inline: auto; }
+.cta-finale .pulsanti { justify-content: center; }
+
+.blocco-dettagli summary { cursor: pointer; font-weight: 600; color: var(--arancio-scuro); }
+.blocco-dettagli ul { columns: 2 18rem; column-gap: 2rem; margin-top: 1rem; }
+.blocco-dettagli li { break-inside: avoid; margin-bottom: 0.35rem; font-size: var(--t-s); }
+
+.modulo { display: grid; gap: 1rem; max-width: 640px; }
+.modulo label { font-weight: 600; font-size: var(--t-s); display: grid; gap: 0.35rem; }
+.modulo input, .modulo select, .modulo textarea { font: inherit; color: var(--testo); background: var(--carta); border: 1px solid #CDBBA8; border-radius: 10px; padding: 0.75rem 0.9rem; width: 100%; }
+.modulo textarea { min-height: 7rem; resize: vertical; }
+.modulo .consenso { display: flex; gap: 0.6rem; align-items: flex-start; font-weight: 400; }
+.modulo .consenso input { width: auto; margin-top: 0.3rem; }
+.nota { font-size: var(--t-s); color: var(--marrone); }

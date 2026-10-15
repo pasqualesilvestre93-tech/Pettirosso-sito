@@ -1,0 +1,16 @@
+---
+import { u } from '../lib';
+import { site } from '../data/site';
+interface Props { titolo?: string; }
+const { titolo = 'Conosciamoci prima' } = Astro.props;
+---
+<section class="sezione fascia-scura">
+  <div class="wrap cta-finale">
+    <h2>{titolo}</h2>
+    <p class="lead" style="color:#EFE4D8">Pensione e asilo iniziano sempre con una visita conoscitiva gratuita, per il cane e per la famiglia.</p>
+    <div class="pulsanti">
+      <a class="btn primario" href={u('prenota/')}>Prenota la visita conoscitiva gratuita</a>
+      <a class="btn secondario" href={site.telefonoLink}>Chiama {site.telefono}</a>
+    </div>
+  </div>
+</section>

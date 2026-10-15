@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Prenota la visita conoscitiva · Il Pettirosso" description="Prenota una visita conoscitiva gratuita al Centro Cinofilo Il Pettirosso: pensione, asilo, educazione o riabilitazione." image="gallery-asilo-2025">
+  <section class="sezione">
+    <div class="wrap griglia-2" style="align-items:start">
+      <div>
+        <span class="etichetta">Prenota</span>
+        <h1>Visita conoscitiva gratuita</h1>
+        <p class="lead">Raccontaci del tuo cane: ti ricontattiamo per fissare la visita. Pensione e asilo iniziano sempre così, senza costi.</p>
+        <p class="nota">Inviando il modulo si apre WhatsApp con il messaggio già scritto: devi solo premere invio. Se preferisci, chiamaci al <a href={site.telefonoLink}>{site.telefono}</a>.</p>
+      </div>
+      <form class="modulo" id="prenota" data-wa={site.whatsapp}>
+        <label for="p-nome">Il tuo nome<input id="p-nome" name="nome" required autocomplete="name" /></label>
+        <label for="p-tel">Telefono<input id="p-tel" name="telefono" type="tel" required autocomplete="tel" /></label>
+        <label for="p-cane">Nome ed età del cane<input id="p-cane" name="cane" required placeholder="Es. Luna, 2 anni" /></label>
+        <label for="p-servizio">Ti interessa
+          <select id="p-servizio" name="servizio" required>
+            <option value="">Scegli…</option>
+            <option>Pensione</option>
+            <option>Asilo</option>
+            <option>Educazione</option>
+            <option>Riabilitazione</option>
+            <option>Attività (fiuto, Mobility Dog, TTouch)</option>
+          </select>
+        </label>
+        <label for="p-msg">Messaggio (facoltativo)<textarea id="p-msg" name="messaggio" placeholder="Date del soggiorno, abitudini del cane, domande…"></textarea></label>
+        <label class="consenso" for="p-privacy"><input id="p-privacy" type="checkbox" required /> <span>Ho letto l'informativa privacy e acconsento al trattamento dei dati per essere ricontattato. <span class="dc">informativa da completare</span></span></label>
+        <button class="btn primario" type="submit">Invia su WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</Base>
+<script>
+  const f = document.getElementById('prenota') as HTMLFormElement | null;
+  f?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(f);
+    const righe = [
+      'Ciao, vorrei prenotare una visita conoscitiva.',
+      `Nome: ${d.get('nome')}`,
+      `Telefono: ${d.get('telefono')}`,
+      `Cane: ${d.get('cane')}`,
+      `Servizio: ${d.get('servizio')}`,
+    ];
+    const m = String(d.get('messaggio') || '').trim();
+    if (m) righe.push(`Messaggio: ${m}`);
+    window.location.href = `${f.dataset.wa}?text=${encodeURIComponent(righe.join('\n'))}`;
+  });
+</script>
