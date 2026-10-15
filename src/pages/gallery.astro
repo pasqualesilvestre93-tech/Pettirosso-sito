@@ -42,7 +42,7 @@ const passato = ['york-passato-2', 'york-passato-3', 'york-passato-5', 'york-pas
 
   <section class="sezione stretta">
     <div class="wrap galleria">
-      {foto.map((x) => <Foto nome={x.n} alt={x.t || 'Un momento al campo del Pettirosso'} formato={x.f} didascalia={x.t || undefined} />)}
+      {foto.map((x) => <Foto nome={x.n} alt={x.t || 'Un momento al campo del Pettirosso'} formato={x.f} didascalia={x.t || undefined} sizes="(max-width: 640px) 50vw, 280px" />)}
     </div>
   </section>
 

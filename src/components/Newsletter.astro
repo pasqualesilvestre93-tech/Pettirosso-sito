@@ -7,13 +7,13 @@
     <label for="nl-email" class="vh">Email</label>
     <input id="nl-email" type="email" placeholder="La tua email" required />
     <button class="btn primario" type="submit">Iscriviti</button>
-    <p class="nota nl-esito" hidden>Anteprima: l'iscrizione si attiva con il collegamento a Brevo, al lancio del sito.</p>
+    <p class="nota nl-esito" role="status" hidden>Anteprima: l'iscrizione si attiva con il collegamento a Brevo, al lancio del sito.</p>
   </form>
 </div>
 <style>
   .newsletter { max-width: 720px; }
   .nl-form { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
-  .nl-form input { flex: 1 1 220px; font: inherit; padding: 0.8rem 1rem; border: 1px solid #CDBBA8; border-radius: 999px; background: #fff; color: var(--testo); min-width: 0; }
+  .nl-form input { flex: 1 1 220px; font: inherit; padding: 0.8rem 1rem; border: 1px solid var(--bordo-campo); border-radius: 999px; background: #fff; color: var(--testo); min-width: 0; }
   .nl-esito { flex-basis: 100%; margin: 0; }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>

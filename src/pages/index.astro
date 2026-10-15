@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Foto from '../components/Foto.astro';
-import Video from '../components/Video.astro';
 import Newsletter from '../components/Newsletter.astro';
 import InvitoVisita from '../components/InvitoVisita.astro';
 import Faq from '../components/Faq.astro';
@@ -84,29 +83,6 @@ const url = new URL(u(''), Astro.site).href;
   <section class="sezione fascia">
     <div class="wrap griglia-2">
       <div>
-        <h2>Ogni settimana, una scena tra cani commentata da Nando</h2>
-        <p class="testo">La nuova rubrica video: Ferdinando filma i cani al centro e spiega cosa succede nella relazione tra loro. Il primo episodio è in arrivo.</p>
-        <p class="nota">Dall'archivio: un incontro tra cani in pensione.</p>
-        <div class="pulsanti"><a class="btn secondario" href={site.instagram} rel="noopener">Seguici su Instagram</a></div>
-      </div>
-      <Video nome="pensione-incontro" verticale />
-    </div>
-  </section>
-
-  <section class="sezione">
-    <div class="wrap griglia-2">
-      <div>
-        <h2>La lettera del Pettirosso</h2>
-        <p class="testo">Ogni mese un articolo che approfondisce i miti più diffusi sui cani, con quello che vediamo ogni giorno al campo. Il primo numero è in arrivo.</p>
-        <div class="pulsanti"><a class="btn secondario" href={u('blog/')}>Vai al blog</a></div>
-      </div>
-      <Newsletter />
-    </div>
-  </section>
-
-  <section class="sezione fascia">
-    <div class="wrap griglia-2">
-      <div>
         <h2>Siamo in località Centore, a Giugliano</h2>
         <p>{site.sedeOperativa}</p>
         <ul class="elenco">{site.puntiRiferimento.map((p) => <li>{p}</li>)}</ul>
@@ -122,6 +98,20 @@ const url = new URL(u(''), Astro.site).href;
   <section class="sezione">
     <div class="wrap testo">
       <Faq titolo="Domande frequenti" domande={domande} />
+    </div>
+  </section>
+
+  <section class="sezione fascia">
+    <div class="wrap griglia-2">
+      <div>
+        <h2>Leggere i cani, con Nando</h2>
+        <p class="testo">Ogni settimana una scena tra cani, filmata al centro e commentata da Ferdinando. Ogni mese una lettera che approfondisce i miti più diffusi sui cani, con quello che vediamo al campo. Si parte a breve.</p>
+        <div class="pulsanti">
+          <a class="btn secondario" href={site.instagram} rel="noopener">Seguici su Instagram</a>
+          <a class="btn secondario" href={u('blog/')}>Vai al blog</a>
+        </div>
+      </div>
+      <Newsletter />
     </div>
   </section>
 

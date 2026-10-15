@@ -8,7 +8,7 @@ import { site } from '../data/site';
       <div>
         <h1>Visita conoscitiva gratuita</h1>
         <p class="lead">Raccontaci del tuo cane: ti ricontattiamo per fissare la visita. Pensione e asilo iniziano sempre così, senza costi.</p>
-        <p class="nota">Inviando il modulo si apre WhatsApp con il messaggio già scritto: devi solo premere invio. Se preferisci, chiamaci al <a href={site.telefonoLink}>{site.telefono}</a>.</p>
+        <p class="nota">Preferisci parlarne a voce? Chiamaci al <a href={site.telefonoLink}>{site.telefono}</a>.</p>
       </div>
       <form class="modulo" id="prenota" data-wa={site.whatsapp}>
         <label for="p-nome">Il tuo nome<input id="p-nome" name="nome" required autocomplete="name" /></label>
@@ -26,7 +26,8 @@ import { site } from '../data/site';
         </label>
         <label for="p-msg">Messaggio (facoltativo)<textarea id="p-msg" name="messaggio" placeholder="Date del soggiorno, abitudini del cane, domande…"></textarea></label>
         <label class="consenso" for="p-privacy"><input id="p-privacy" type="checkbox" required /> <span>Ho letto l'informativa privacy e acconsento al trattamento dei dati per essere ricontattato. <span class="dc">informativa da completare</span></span></label>
-        <button class="btn primario" type="submit">Invia su WhatsApp</button>
+        <p class="nota" id="p-aiuto">Tutti i campi sono obbligatori, tranne il messaggio. Premendo il pulsante si apre WhatsApp con la richiesta già scritta: ti basta inviarla.</p>
+        <button class="btn primario" type="submit" aria-describedby="p-aiuto">Invia la richiesta su WhatsApp</button>
       </form>
     </div>
   </section>

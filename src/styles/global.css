@@ -10,6 +10,7 @@
   --arancio-scuro: #B84600;
   --arancio: #E16702;
   --oro: #C8A269;
+  --bordo-campo: #957A6C;
   --avviso-bg: #FFF1D6;
   --avviso-fg: #7A4300;
 
@@ -30,7 +31,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 6rem; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 
 body {
@@ -124,7 +125,7 @@ td.prezzo { font-weight: 600; color: var(--testo); }
 
 .modulo { display: grid; gap: 1rem; max-width: 640px; }
 .modulo label { font-weight: 600; font-size: var(--t-s); display: grid; gap: 0.35rem; }
-.modulo input, .modulo select, .modulo textarea { font: inherit; color: var(--testo); background: var(--carta); border: 1px solid #CDBBA8; border-radius: 10px; padding: 0.75rem 0.9rem; width: 100%; }
+.modulo input, .modulo select, .modulo textarea { font: inherit; color: var(--testo); background: var(--carta); border: 1px solid var(--bordo-campo); border-radius: 10px; padding: 0.75rem 0.9rem; width: 100%; }
 .modulo textarea { min-height: 7rem; resize: vertical; }
 .modulo .consenso { display: flex; gap: 0.6rem; align-items: flex-start; font-weight: 400; }
 .modulo .consenso input { width: auto; margin-top: 0.3rem; }
