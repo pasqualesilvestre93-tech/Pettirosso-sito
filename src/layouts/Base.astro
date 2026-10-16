@@ -140,7 +140,7 @@ const grafo = {
   .salta { position: absolute; left: -999px; top: 0; background: var(--testo); color: #fff; padding: 0.5rem 1rem; z-index: 50; }
   .salta:focus { left: 1rem; }
   .demo-bar { background: var(--testo); color: var(--crema); font-size: var(--t-xs); text-align: center; padding: 0.45rem var(--gutter-r) 0.45rem var(--gutter); }
-  .testata { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(249, 245, 240, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--sabbia); }
+  .testata { view-transition-name: testata; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(249, 245, 240, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--sabbia); }
   .testata-in { display: flex; align-items: center; gap: 1.25rem; min-height: 68px; }
   .marchio { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--testo); margin-right: auto; }
   .marchio span { font-family: var(--f-titoli); font-size: 1.25rem; font-weight: 600; line-height: 1.05; display: grid; }
@@ -153,6 +153,10 @@ const grafo = {
   .menu-mobile summary { list-style: none; cursor: pointer; font-weight: 600; border: 1px solid var(--sabbia); border-radius: 999px; padding: 0.5rem 1rem; background: var(--carta); }
   .menu-mobile summary::-webkit-details-marker { display: none; }
   .menu-mobile nav { position: absolute; right: 0; top: calc(100% + 0.5rem); background: var(--carta); border: 1px solid var(--sabbia); border-radius: var(--raggio); padding: 0.75rem; display: grid; gap: 0.25rem; min-width: 230px; box-shadow: 0 12px 30px rgba(95, 67, 55, 0.15); }
+  @media (prefers-reduced-motion: no-preference) {
+    .menu-mobile nav { transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); transform-origin: top right; }
+    @starting-style { .menu-mobile[open] nav { opacity: 0; transform: translateY(-6px) scale(0.98); } }
+  }
   .menu-mobile nav a { padding: 0.55rem 0.75rem; color: var(--testo); text-decoration: none; border-radius: 8px; font-weight: 600; }
   .menu-mobile nav a.btn { color: #fff; justify-content: center; margin-top: 0.5rem; }
   .menu-mobile nav a[aria-current='page'] { background: var(--beige); }
@@ -169,7 +173,7 @@ const grafo = {
   @media (max-width: 900px) { .piede-griglia { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .piede-griglia { grid-template-columns: 1fr; } }
 
-  .wa-fisso { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: inline-flex; align-items: center; gap: 0.45rem; background: #1F7A4D; color: #fff; text-decoration: none; font-weight: 600; font-size: var(--t-s); padding: 0.75rem 1.1rem; border-radius: 999px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
+  .wa-fisso { view-transition-name: whatsapp; position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: inline-flex; align-items: center; gap: 0.45rem; background: #1F7A4D; color: #fff; text-decoration: none; font-weight: 600; font-size: var(--t-s); padding: 0.75rem 1.1rem; border-radius: 999px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
   .wa-fisso:hover { background: #17633E; color: #fff; }
   @media (max-width: 480px) { .wa-fisso span { display: none; } .wa-fisso { padding: 0.85rem; } }
 </style>

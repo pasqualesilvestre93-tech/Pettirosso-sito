@@ -1,0 +1,117 @@
+---
+// Hero della home: la zampa del logo con il campo vero dentro il cuscinetto.
+// Le dita "stampano" una volta al caricamento; il video parte solo dopo il load,
+// mai con riduzione del movimento o risparmio dati, e si può mettere in pausa.
+import { u } from '../lib';
+const poster = (w: number) => u(`hero/campo-${w}.webp`);
+---
+<div class="zampa" data-zampa>
+  <svg class="dita" viewBox="0 0 100 88" aria-hidden="true" focusable="false">
+    <g class="dito d1"><ellipse cx="9" cy="34" rx="7.2" ry="9.6" transform="rotate(-28 9 34)" /></g>
+    <g class="dito d2"><ellipse cx="31" cy="15" rx="8.6" ry="11.4" transform="rotate(-10 31 15)" /></g>
+    <g class="dito d3"><ellipse cx="69" cy="15" rx="8.6" ry="11.4" transform="rotate(10 69 15)" /></g>
+    <g class="dito d4"><ellipse cx="91" cy="34" rx="7.2" ry="9.6" transform="rotate(28 91 34)" /></g>
+  </svg>
+  <div class="cuscinetto">
+    <img
+      src={poster(736)}
+      srcset={`${poster(480)} 480w, ${poster(736)} 736w`}
+      sizes="(max-width: 820px) 220px, 400px"
+      alt="Due cani liberi nel prato del centro, tra le attrezzature per la Mobility Dog"
+      width="736" height="576" fetchpriority="high" decoding="async"
+    />
+    <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
+      data-base={u('hero/campo-')}></video>
+  </div>
+  <button class="pausa" type="button" hidden aria-label="Metti in pausa il video">
+    <svg class="i-pausa" viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="4" width="3.5" height="12" rx="1" /><rect x="11.5" y="4" width="3.5" height="12" rx="1" /></svg>
+    <svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.2v11.6a.8.8 0 0 0 1.2.7l9-5.8a.8.8 0 0 0 0-1.4l-9-5.8a.8.8 0 0 0-1.2.7z" /></svg>
+  </button>
+</div>
+
+<script>
+  const zampa = document.querySelector<HTMLElement>('[data-zampa]');
+  if (zampa) {
+    const video = zampa.querySelector('video')!;
+    const pulsante = zampa.querySelector<HTMLButtonElement>('.pausa')!;
+    const cuscinetto = zampa.querySelector<HTMLElement>('.cuscinetto')!;
+    const ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const risparmio = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+    let fermatoDaUtente = false;
+
+    const segna = (inPausa: boolean) => {
+      zampa.classList.toggle('in-pausa', inPausa);
+      pulsante.setAttribute('aria-label', inPausa ? 'Riproduci il video' : 'Metti in pausa il video');
+    };
+    const riproduci = () => video.play().catch(() => {});
+
+    const avvia = () => {
+      // H.264 dove c'è (Safari, Chrome, Edge), altrimenti WebM VP9.
+      const formato = video.canPlayType('video/mp4; codecs="avc1.640028"') ? 'mp4' : 'webm';
+      video.src = `${video.dataset.base}${cuscinetto.clientWidth <= 300 ? 480 : 736}.${formato}`;
+      video.addEventListener('playing', () => { zampa.classList.add('in-play'); pulsante.hidden = false; }, { once: true });
+      riproduci();
+      // Fuori schermo il video si ferma: niente batteria e CPU sprecate.
+      new IntersectionObserver(([voce]) => {
+        if (fermatoDaUtente) return;
+        if (voce.isIntersecting) riproduci(); else video.pause();
+      }).observe(zampa);
+    };
+
+    pulsante.addEventListener('click', () => {
+      fermatoDaUtente = !video.paused;
+      if (fermatoDaUtente) video.pause(); else riproduci();
+      segna(fermatoDaUtente);
+    });
+
+    if (!ridotto && !risparmio) {
+      const dopoIlCaricamento = () => setTimeout(avvia, 400);
+      if (document.readyState === 'complete') dopoIlCaricamento();
+      else addEventListener('load', dopoIlCaricamento, { once: true });
+    }
+  }
+</script>
+
+<style>
+  .zampa { position: relative; width: 100%; max-width: 540px; aspect-ratio: 100 / 88; margin-inline: auto; }
+  .dita { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .dito { fill: var(--arancio); transform-box: fill-box; transform-origin: 50% 85%; }
+  .cuscinetto {
+    position: absolute; left: 13%; top: 38.6%; width: 74%; height: 60.2%;
+    background: var(--sabbia);
+    --forma: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 78' preserveAspectRatio='none'%3E%3Cpath d='M50 3C67 3 74 14 81 26C88 37 100 45 99.5 59C99 73 88 79 76 76.5C66 74.5 59 71 50 71C41 71 34 74.5 24 76.5C12 79 1 73 0.5 59C0 45 12 37 19 26C26 14 33 3 50 3Z'/%3E%3C/svg%3E");
+    -webkit-mask: var(--forma) center / 100% 100% no-repeat;
+    mask: var(--forma) center / 100% 100% no-repeat;
+  }
+  .cuscinetto img, .cuscinetto video { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: 50% 40%; }
+  .cuscinetto video { opacity: 0; transition: opacity 0.8s ease; background: transparent; }
+  .in-play .cuscinetto video { opacity: 1; }
+
+  .pausa {
+    position: absolute; right: 4%; bottom: 2%; width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center; padding: 0; cursor: pointer;
+    background: var(--carta); color: var(--testo); border: 1px solid var(--bordo-campo);
+    box-shadow: 0 4px 14px rgba(95, 67, 55, 0.18);
+  }
+  .pausa[hidden] { display: none; }
+  .pausa svg { width: 18px; height: 18px; fill: currentColor; }
+  .pausa .i-play, .in-pausa .pausa .i-pausa { display: none; }
+  .in-pausa .pausa .i-play { display: block; }
+  .pausa:hover { background: var(--beige); }
+
+  /* L'unico momento animato del sito: la zampa che si posa. */
+  @media (prefers-reduced-motion: no-preference) {
+    .cuscinetto { animation: posa 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .dito { animation: impronta 0.55s cubic-bezier(0.3, 1.5, 0.5, 1) both; }
+    .d1 { animation-delay: 0.25s; }
+    .d2 { animation-delay: 0.37s; }
+    .d3 { animation-delay: 0.49s; }
+    .d4 { animation-delay: 0.61s; }
+  }
+  @keyframes posa { from { transform: scale(0.93); } }
+  @keyframes impronta {
+    from { opacity: 0; transform: translateY(-18%) scale(0.55); }
+    60% { opacity: 1; }
+    to { opacity: 1; transform: none; }
+  }
+</style>

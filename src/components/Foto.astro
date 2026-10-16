@@ -1,14 +1,16 @@
 ---
 import { img, u } from '../lib';
 import dims from '../data/img-dims.json';
-interface Props { nome: string; alt: string; formato?: 'r43' | 'r34' | 'r169' | 'libero'; didascalia?: string; eager?: boolean; sizes?: string; }
-const { nome, alt, formato = 'r43', didascalia, eager = false, sizes = '(max-width: 720px) 100vw, 560px' } = Astro.props;
+interface Props { nome: string; alt: string; formato?: 'r43' | 'r34' | 'r169' | 'libero'; didascalia?: string; eager?: boolean; sizes?: string; transizione?: string; }
+const { nome, alt, formato = 'r43', didascalia, eager = false, sizes = '(max-width: 720px) 100vw, 560px', transizione } = Astro.props;
+// Stesso nome su due pagine = la foto si sposta da una all'altra durante la navigazione.
+const vt = transizione ? `view-transition-name: foto-${transizione.replace(/\W+/g, '-').replace(/-$/, '')}` : undefined;
 const [w, h] = (dims as Record<string, number[]>)[nome] ?? [];
 // Variante da 800 px generata per le immagini più larghe di 900 px: il telefono scarica quella.
 const srcset = w > 900 ? `${u(`img/${nome}-800.webp`)} 800w, ${img(nome)} ${w}w` : undefined;
 ---
 <figure class="foto-fig">
-  <div class:list={['foto', formato !== 'libero' && formato]}>
+  <div class:list={['foto', formato !== 'libero' && formato]} style={vt}>
     <img src={img(nome)} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} width={w} height={h} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" />
   </div>
   {didascalia && <figcaption>{didascalia}</figcaption>}

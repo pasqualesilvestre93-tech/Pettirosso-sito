@@ -1,7 +1,7 @@
 ---
 import Foto from './Foto.astro';
-interface Props { etichetta?: string; titolo: string; foto: string; alt: string; formato?: 'r43' | 'r34' | 'r169'; }
-const { titolo, foto, alt, formato = 'r43' } = Astro.props;
+interface Props { etichetta?: string; titolo: string; foto: string; alt: string; formato?: 'r43' | 'r34' | 'r169'; transizione?: string; }
+const { titolo, foto, alt, formato = 'r43', transizione } = Astro.props;
 ---
 <section class="apertura">
   <div class="wrap griglia-2">
@@ -9,7 +9,7 @@ const { titolo, foto, alt, formato = 'r43' } = Astro.props;
       <h1>{titolo}</h1>
       <slot />
     </div>
-    <Foto nome={foto} alt={alt} formato={formato} eager />
+    <Foto nome={foto} alt={alt} formato={formato} eager transizione={transizione} />
   </div>
 </section>
 <style>.apertura { padding-block: clamp(1.5rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3.5rem); }</style>
